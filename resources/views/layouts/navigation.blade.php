@@ -24,8 +24,7 @@
             </li>
 
             <li class="relative px-6 py-3">
-{{--                <x-nav-link href="{{ route('notes.index') }}" :active="request()->routeIs('notes.index')">--}}
-                <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                <x-nav-link href="{{ route('notes.index') }}" :active="request()->routeIs('notes.index')">
                     <x-slot name="icon">
                         <x-icons.clipboard-list />
                     </x-slot>
