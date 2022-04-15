@@ -16,13 +16,12 @@
                 <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                    <!-- Input[ype="email"] -->
                     <div class="mt-4">
-                        <x-label :value="__('Email')"/>
-                        <x-input type="email"
-                                 id="email"
-                                 name="email"
-                                 value="{{ old('email') }}"
+                        <x-label for="login" :value="__('Login: Username \ Email')"/>
+                        <x-input type="text"
+                                 id="login"
+                                 name="login"
+                                 value="{{ old('login') }}"
                                  class="block w-full"
                                  required
                                  autofocus/>

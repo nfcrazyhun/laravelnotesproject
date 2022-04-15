@@ -28,11 +28,22 @@
                     </div>
 
                     <div class="mt-4">
+                        <x-label for="username" :value="__('Username')"/>
+                        <x-input type="text"
+                                 id="username"
+                                 name="username"
+                                 class="block w-full"
+                                 value="{{ old('username') }}"
+                                 required/>
+                    </div>
+
+                    <div class="mt-4">
                         <x-label for="email" :value="__('Email')"/>
                         <x-input name="email"
                                  type="email"
                                  class="block w-full"
-                                 value="{{ old('email') }}"/>
+                                 value="{{ old('email') }}"
+                                 required/>
                     </div>
 
                     <div class="mt-4">

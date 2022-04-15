@@ -20,6 +20,7 @@ class ProfileController extends Controller
 
         auth()->user()->update([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
         ]);
 

@@ -44,6 +44,21 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="username" :value="__('Username')"/>
+                <x-input type="text"
+                         id="username"
+                         name="username"
+                         class="block w-full"
+                         value="{{ old('username', auth()->user()->username) }}"
+                         required/>
+                @error('username')
+                    <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
                 <x-label for="email" :value="__('Email')"/>
                 <x-input name="email"
                          type="email"
@@ -62,7 +77,7 @@
                 <x-input type="password"
                          name="password"
                          class="block w-full"
-                         required/>
+                         />
                 @error('password')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
@@ -75,7 +90,7 @@
                 <x-input type="password"
                          name="password_confirmation"
                          class="block w-full"
-                         required/>
+                         />
             </div>
 
             <div class="mt-4">
