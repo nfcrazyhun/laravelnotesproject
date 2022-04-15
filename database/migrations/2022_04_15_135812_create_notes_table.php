@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->foreignIdFor(App\Models\User::class)->constrained();
+            $table->string('body')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
