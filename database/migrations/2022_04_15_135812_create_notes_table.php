@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App\Models\User::class)->constrained();
             $table->string('body')->nullable();
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

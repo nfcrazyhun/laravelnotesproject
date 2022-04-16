@@ -20,6 +20,21 @@ class NoteFactory extends Factory
         return [
             'user_id' => User::factory()->create(),
             'body' => $this->faker->sentence(),
+            'is_private' => false,
         ];
+    }
+
+    /**
+     * Indicate that the model's status should be private.
+     *
+     * @return static
+     */
+    public function private()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'is_private' => true,
+            ];
+        });
     }
 }
