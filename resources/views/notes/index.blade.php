@@ -31,6 +31,7 @@
                         <th class="px-4 py-3">is_private</th>
                         <th class="px-4 py-3">created_at</th>
                         <th class="px-4 py-3">updated_at</th>
+                        <th class="px-4 py-3">Actions</th>
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y">
@@ -58,6 +59,10 @@
 
                             <td class="px-4 py-3 text-sm">
                                 {{ $note->updated_at }}
+                            </td>
+
+                            <td class="px-4 py-3 text-sm">
+                                <x-link-button href="{{ route('notes.update',$note) }}">Edit</x-link-button>
                             </td>
                         </tr>
                     @endforeach
