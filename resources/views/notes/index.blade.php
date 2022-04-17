@@ -25,6 +25,21 @@
         </div>
  --}}
 
+        @if ($message = Session::get('success'))
+            <div class="inline-flex w-full mb-4 overflow-hidden bg-white rounded-lg shadow-md">
+                <div class="flex items-center justify-center w-12 bg-green-500">
+                    <x-icons.check-circle />
+                </div>
+
+                <div class="px-4 py-2 -mx-3">
+                    <div class="mx-3">
+                        <span class="font-semibold text-green-500">Success</span>
+                        <p class="text-sm text-gray-600">{{ $message }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <!-- Create button -->
         <div class="mb-4">
             <x-link-button href="{{ route('notes.create') }}">Create</x-link-button>
