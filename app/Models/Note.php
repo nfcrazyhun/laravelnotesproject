@@ -16,7 +16,6 @@ class Note extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'body',
         'is_private',
     ];

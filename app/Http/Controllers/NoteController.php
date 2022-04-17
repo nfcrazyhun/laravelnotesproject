@@ -55,11 +55,11 @@ class NoteController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function edit(Note $note)
     {
-        //
+        return view('notes.edit', compact('note'));
     }
 
     /**
@@ -67,11 +67,22 @@ class NoteController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Note $note)
     {
-        //
+        //validation
+        $request->validate([
+            'body' => 'required|max:255',
+            'is_private' => 'required|boolean',
+        ]);
+
+        $note->update([
+            'body' => $request->body,
+            'is_private' => $request->is_private,
+        ]);
+
+        return redirect()->back()->with('success', 'Note updated.');
     }
 
     /**

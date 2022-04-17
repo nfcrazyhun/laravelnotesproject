@@ -1,0 +1,72 @@
+<x-app-layout>
+    <x-slot name="header">
+        {{ __('Edit Note') }}
+    </x-slot>
+
+    @if ($message = Session::get('success'))
+        <div class="inline-flex w-full mb-4 overflow-hidden bg-white rounded-lg shadow-md">
+            <div class="flex items-center justify-center w-12 bg-green-500">
+                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z">
+                    </path>
+                </svg>
+            </div>
+
+            <div class="px-4 py-2 -mx-3">
+                <div class="mx-3">
+                    <span class="font-semibold text-green-500">Success</span>
+                    <p class="text-sm text-gray-600">{{ $message }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="p-4 bg-white rounded-lg shadow-md">
+
+        <form action="{{ route('notes.update', $note) }}" method="POST">
+            @method('PATCH')
+            @csrf
+
+            <!-- body -->
+            <div class="mt-4">
+                <x-label for="body" :value="__('body')"/>
+                <x-input type="text"
+                         id="body"
+                         name="body"
+                         class="block w-full"
+                         value="{{ old('body', $note->body) }}"
+                />
+                @error('body')
+                <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <!-- is_private -->
+            <div class="mt-4">
+                <x-label for="is_private" :value="__('is_private')"/>
+                <x-input type="text"
+                         id="is_private"
+                         name="is_private"
+                         class="block w-full"
+                         value="{{ intval( old('is_private', $note->is_private) ) }}"
+                />
+
+                @error('is_private')
+                <span class="text-xs text-red-600 dark:text-red-400">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <x-button class="block w-full">
+                    {{ __('Submit') }}
+                </x-button>
+            </div>
+        </form>
+
+    </div>
+</x-app-layout>

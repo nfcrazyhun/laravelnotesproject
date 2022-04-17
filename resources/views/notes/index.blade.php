@@ -62,7 +62,7 @@
                             </td>
 
                             <td class="px-4 py-3 text-sm">
-                                <x-link-button href="{{ route('notes.update',$note) }}">Edit</x-link-button>
+                                <x-link-button href="{{ route('notes.edit', $note) }}">Edit</x-link-button>
                             </td>
                         </tr>
                     @endforeach
