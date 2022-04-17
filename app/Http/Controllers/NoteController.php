@@ -48,7 +48,7 @@ class NoteController extends Controller
             'is_private' => $request->is_private,
         ]);
 
-        return redirect()->back()->with('success', 'Note Created.');
+        return redirect()->route('notes.index')->with('success', 'Note Created.');
     }
 
     /**
