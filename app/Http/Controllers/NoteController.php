@@ -10,11 +10,13 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        return Note::all();
+        $notes = Note::paginate();
+
+        return view('notes.index', compact('notes'));
     }
 
     /**
