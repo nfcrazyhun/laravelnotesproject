@@ -22,6 +22,15 @@
         </div>
     @endif
 
+    <!-- Delete button -->
+    <div class="mb-4">
+        <form action="{{ route('notes.destroy', $note) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <x-button class="">{{ __('Delete') }}</x-button>
+        </form>
+    </div>
+
     <div class="p-4 bg-white rounded-lg shadow-md">
 
         <form action="{{ route('notes.update', $note) }}" method="POST">

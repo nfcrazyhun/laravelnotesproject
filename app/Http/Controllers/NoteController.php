@@ -89,10 +89,12 @@ class NoteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+
+        return redirect()->route('notes.index')->with('success', 'Note deleted.');
     }
 }
