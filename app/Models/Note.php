@@ -21,6 +21,15 @@ class Note extends Model
         'is_private',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'is_private' => 'boolean',
+    ];
+
     /* Relationships */
 
     /**
