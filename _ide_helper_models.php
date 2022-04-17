@@ -15,10 +15,13 @@ namespace App\Models{
  * App\Models\Note
  *
  * @property int $id
- * @property string $body
+ * @property int $user_id
+ * @property string|null $body
+ * @property bool $is_private
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\User $user
  * @method static \Database\Factories\NoteFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Note newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Note newQuery()
@@ -28,7 +31,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Note whereIsPrivate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Note whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|Note withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Note withoutTrashed()
  */
@@ -46,11 +51,15 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
+ * @property int|null $parent_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Note[] $notes
+ * @property-read int|null $notes_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read User|null $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
@@ -64,6 +73,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
