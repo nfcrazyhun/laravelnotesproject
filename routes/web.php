@@ -26,7 +26,7 @@ require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::resource('users', \App\Http\Controllers\UserController::class);
 
     Route::resource('notes', \App\Http\Controllers\NoteController::class);
 
