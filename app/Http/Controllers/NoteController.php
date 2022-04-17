@@ -22,11 +22,11 @@ class NoteController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('notes.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            'body' => 'required|max:255',
+            'is_private' => 'required|boolean',
+        ]);
+
+        auth()->user()->notes()->create([
+            'body' => $request->body,
+            'is_private' => $request->is_private,
+        ]);
+
+        return redirect()->back()->with('success', 'Note Created.');
     }
 
     /**

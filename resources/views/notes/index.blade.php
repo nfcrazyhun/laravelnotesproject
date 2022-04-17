@@ -3,8 +3,12 @@
         {{ __('Notes') }}
     </x-slot>
 
+
+
     <div class="p-4 bg-white rounded-lg shadow-xs">
 
+{{--
+        <!-- Sample table page info -->
         <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
             <div class="flex justify-center items-center w-12 bg-blue-500">
                 <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
@@ -18,6 +22,12 @@
                     <p class="text-sm text-gray-600">Sample table page</p>
                 </div>
             </div>
+        </div>
+ --}}
+
+        <!-- Create button -->
+        <div class="mb-4">
+            <x-link-button href="{{ route('notes.create') }}">Create</x-link-button>
         </div>
 
         <div class="overflow-hidden mb-8 w-full rounded-lg border shadow-xs">
