@@ -41,17 +41,6 @@ class NoteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Note $note)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Note  $note
