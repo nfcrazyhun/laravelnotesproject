@@ -32,7 +32,14 @@
                 </x-nav-link>
             </li>
 
-
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('notes-tree.index') }}" :active="request()->routeIs('notes-tree.index')">
+                    <x-slot name="icon">
+                        <x-icons.clipboard-list-solid />
+                    </x-slot>
+                    {{ __('Notes Tree') }}
+                </x-nav-link>
+            </li>
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
