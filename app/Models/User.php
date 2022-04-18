@@ -16,6 +16,13 @@ class User extends Authenticatable
     use CascadeSoftDeletes;
 
     /**
+     * Cascade delete on on listed relationships.
+     *
+     * @var string[]
+     */
+    protected $cascadeDeletes = ['notes'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
