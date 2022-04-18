@@ -65,7 +65,7 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y">
-                    @if( $notes->total() )
+                    @unless( empty($notes) )
                         @foreach($notes as $note)
                             <tr class="text-gray-700">
                                 <td class="px-4 py-3 text-sm">
@@ -101,7 +101,7 @@
                         <tr class=" text-gray-500 text-xl text-center">
                             <td colspan="7" class="p-6">Notes not found!</td>
                         </tr>
-                    @endif
+                    @endunless
                     </tbody>
                 </table>
             </div>
