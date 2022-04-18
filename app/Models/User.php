@@ -58,17 +58,6 @@ class User extends Authenticatable
 
     /* Scopes */
 
-    /**
-     * Scope a query to only include root users.
-     * Means where parent_id == null
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeRoot(\Illuminate\Database\Eloquent\Builder $query)
-    {
-        return $query->whereNull('parent_id');
-    }
 
     /* Relationships */
 
