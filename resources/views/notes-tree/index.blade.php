@@ -97,6 +97,11 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @if($notes->total() == 0)
+                            <tr class=" text-gray-500 text-xl text-center">
+                                <td colspan="7" class="p-6">Public notes not found!</td>
+                            </tr>
+                        @endif
                     @else
                         <tr class=" text-gray-500 text-xl text-center">
                             <td colspan="7" class="p-6">Notes not found!</td>
