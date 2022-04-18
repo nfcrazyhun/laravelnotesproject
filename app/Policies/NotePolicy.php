@@ -19,11 +19,7 @@ class NotePolicy
      */
     public function view(User $user, Note $note)
     {
-        if ( $user->id == $note->user_id ) { return true;}
-
-        if ($note->is_private === false && $note->user->ancestors()->pluck('id')->contains($user->id)) { return true; }
-
-        return false;
+        return $this->update($user, $note);
     }
 
     /**
@@ -35,7 +31,13 @@ class NotePolicy
      */
     public function update(User $user, Note $note)
     {
-        return $user->id == $note->user_id;
+        if ( $user->id == $note->user_id ) { return true;}
+
+        if ($note->is_private === false &&
+            $note->user->ancestors()->pluck('id')->contains($user->id)
+        ) { return true; }
+
+        return false;
     }
 
     /**
