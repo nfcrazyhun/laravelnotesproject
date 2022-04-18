@@ -37,7 +37,7 @@ class NoteSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             Note::factory()->create([
                 'user_id' => Arr::random($users),
-                'is_private' => rand(0,1),
+                'is_private' => Arr::random([false,false,true]), // 1/3 chance to private
             ]);
         }
 
