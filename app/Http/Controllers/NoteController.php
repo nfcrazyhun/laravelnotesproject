@@ -59,7 +59,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        $this->authorizeForUser(auth()->user(),'update', $note);
+        $this->authorizeForUser(auth()->user(),'view', $note);
 
         return view('notes.edit', compact('note'));
     }
