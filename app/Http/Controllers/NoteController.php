@@ -59,6 +59,8 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
+        $this->authorizeForUser(auth()->user(),'update', $note);
+
         return view('notes.edit', compact('note'));
     }
 
@@ -71,6 +73,8 @@ class NoteController extends Controller
      */
     public function update(Request $request, Note $note)
     {
+        $this->authorizeForUser(auth()->user(),'update', $note);
+
         //validation
         $request->validate([
             'body' => 'required|max:255',
@@ -93,6 +97,8 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
+        $this->authorizeForUser(auth()->user(),'update', $note);
+
         $note->delete();
 
         return redirect()->route('notes.index')->with('success', 'Note deleted.');
