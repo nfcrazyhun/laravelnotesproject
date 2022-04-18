@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Notes') }}
+        {{ __('My Notes') }}
     </x-slot>
 
 

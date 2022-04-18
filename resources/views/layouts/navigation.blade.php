@@ -28,7 +28,7 @@
                     <x-slot name="icon">
                         <x-icons.clipboard-list />
                     </x-slot>
-                    {{ __('Notes') }}
+                    {{ __('My Notes') }}
                 </x-nav-link>
             </li>
 
