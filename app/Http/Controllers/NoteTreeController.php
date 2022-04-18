@@ -21,7 +21,7 @@ class NoteTreeController extends Controller
         $selectedUser = User::where('username', $request->get('username'))->first();
 
         $notes = $selectedUser?->notes()
-            ->when(auth()->user()->id !== $selectedUser->id, function ($query, $selectedUser) {
+            ->when(auth()->user()->id !== $selectedUser->id, function ($query) {
                 $query->public();
             })->paginate();
 
