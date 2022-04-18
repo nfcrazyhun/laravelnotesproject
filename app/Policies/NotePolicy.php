@@ -11,6 +11,18 @@ class NotePolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Note  $note
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function view(User $user, Note $note)
+    {
+        //
+    }
+
+    /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
