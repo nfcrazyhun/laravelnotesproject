@@ -67,9 +67,10 @@ class NoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Note  $note
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Note $note
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Note $note)
     {
@@ -92,12 +93,13 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Note  $note
+     * @param \App\Models\Note $note
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Note $note)
     {
-        $this->authorizeForUser(auth()->user(),'update', $note);
+        $this->authorizeForUser(auth()->user(),'delete', $note);
 
         $note->delete();
 
