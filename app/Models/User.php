@@ -54,6 +54,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /* Scopes */
+
+    /**
+     * Scope a query to only include root users.
+     * Means where parent_id == null
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRoot(\Illuminate\Database\Eloquent\Builder $query)
+    {
+        return $query->whereNull('parent_id');
+    }
+
     /* Relationships */
 
     /**
@@ -74,6 +88,16 @@ class User extends Authenticatable
     public function parent()
     {
         return $this->belongsTo(User::class,'parent_id', 'id');
+    }
+
+    /**
+     * Get the children users for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->hasMany(User::class, 'parent_id', 'id');
     }
 
 
