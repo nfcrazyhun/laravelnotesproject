@@ -4899,8 +4899,8 @@
          * @static 
          */ 
         public static function isMaria()
-        {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+        {            //Method inherited from \Illuminate\Database\MySqlConnection         
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->isMaria();
         }
                     /**
@@ -4910,8 +4910,8 @@
          * @static 
          */ 
         public static function getSchemaBuilder()
-        {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+        {            //Method inherited from \Illuminate\Database\MySqlConnection         
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getSchemaBuilder();
         }
                     /**
@@ -4923,8 +4923,8 @@
          * @static 
          */ 
         public static function getSchemaState($files = null, $processFactory = null)
-        {
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+        {            //Method inherited from \Illuminate\Database\MySqlConnection         
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getSchemaState($files, $processFactory);
         }
                     /**
@@ -4935,7 +4935,7 @@
          */ 
         public static function useDefaultQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->useDefaultQueryGrammar();
         }
                     /**
@@ -4946,7 +4946,7 @@
          */ 
         public static function useDefaultSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->useDefaultSchemaGrammar();
         }
                     /**
@@ -4957,7 +4957,7 @@
          */ 
         public static function useDefaultPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->useDefaultPostProcessor();
         }
                     /**
@@ -4970,7 +4970,7 @@
          */ 
         public static function table($table, $as = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->table($table, $as);
         }
                     /**
@@ -4980,8 +4980,8 @@
          * @static 
          */ 
         public static function query()
-        {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+        {
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->query();
         }
                     /**
@@ -4995,7 +4995,7 @@
          */ 
         public static function selectOne($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->selectOne($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5010,7 +5010,7 @@
          */ 
         public static function scalar($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->scalar($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5023,7 +5023,7 @@
          */ 
         public static function selectFromWriteConnection($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->selectFromWriteConnection($query, $bindings);
         }
                     /**
@@ -5037,7 +5037,7 @@
          */ 
         public static function select($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->select($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5051,7 +5051,7 @@
          */ 
         public static function cursor($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->cursor($query, $bindings, $useReadPdo);
         }
                     /**
@@ -5064,7 +5064,7 @@
          */ 
         public static function insert($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->insert($query, $bindings);
         }
                     /**
@@ -5077,7 +5077,7 @@
          */ 
         public static function update($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->update($query, $bindings);
         }
                     /**
@@ -5090,7 +5090,7 @@
          */ 
         public static function delete($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->delete($query, $bindings);
         }
                     /**
@@ -5103,7 +5103,7 @@
          */ 
         public static function statement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->statement($query, $bindings);
         }
                     /**
@@ -5116,7 +5116,7 @@
          */ 
         public static function affectingStatement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->affectingStatement($query, $bindings);
         }
                     /**
@@ -5128,7 +5128,7 @@
          */ 
         public static function unprepared($query)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->unprepared($query);
         }
                     /**
@@ -5140,7 +5140,7 @@
          */ 
         public static function pretend($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->pretend($callback);
         }
                     /**
@@ -5153,7 +5153,7 @@
          */ 
         public static function bindValues($statement, $bindings)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->bindValues($statement, $bindings);
         }
                     /**
@@ -5165,7 +5165,7 @@
          */ 
         public static function prepareBindings($bindings)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->prepareBindings($bindings);
         }
                     /**
@@ -5179,19 +5179,19 @@
          */ 
         public static function logQuery($query, $bindings, $time = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->logQuery($query, $bindings, $time);
         }
                     /**
          * Register a hook to be run just before a database query is executed.
          *
          * @param \Closure $callback
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function beforeExecuting($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->beforeExecuting($callback);
         }
                     /**
@@ -5203,7 +5203,7 @@
          */ 
         public static function listen($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->listen($callback);
         }
                     /**
@@ -5215,7 +5215,7 @@
          */ 
         public static function raw($value)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->raw($value);
         }
                     /**
@@ -5226,7 +5226,7 @@
          */ 
         public static function hasModifiedRecords()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->hasModifiedRecords();
         }
                     /**
@@ -5238,19 +5238,19 @@
          */ 
         public static function recordsHaveBeenModified($value = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->recordsHaveBeenModified($value);
         }
                     /**
          * Set the record modification state.
          *
          * @param bool $value
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setRecordModificationState($value)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setRecordModificationState($value);
         }
                     /**
@@ -5261,19 +5261,19 @@
          */ 
         public static function forgetRecordModificationState()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->forgetRecordModificationState();
         }
                     /**
          * Indicate that the connection should use the write PDO connection for reads.
          *
          * @param bool $value
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function useWriteConnectionWhenReading($value = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->useWriteConnectionWhenReading($value);
         }
                     /**
@@ -5284,7 +5284,7 @@
          */ 
         public static function isDoctrineAvailable()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->isDoctrineAvailable();
         }
                     /**
@@ -5297,7 +5297,7 @@
          */ 
         public static function getDoctrineColumn($table, $column)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getDoctrineColumn($table, $column);
         }
                     /**
@@ -5308,7 +5308,7 @@
          */ 
         public static function getDoctrineSchemaManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getDoctrineSchemaManager();
         }
                     /**
@@ -5319,7 +5319,7 @@
          */ 
         public static function getDoctrineConnection()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getDoctrineConnection();
         }
                     /**
@@ -5330,7 +5330,7 @@
          */ 
         public static function getPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getPdo();
         }
                     /**
@@ -5341,7 +5341,7 @@
          */ 
         public static function getRawPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getRawPdo();
         }
                     /**
@@ -5352,7 +5352,7 @@
          */ 
         public static function getReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getReadPdo();
         }
                     /**
@@ -5363,31 +5363,31 @@
          */ 
         public static function getRawReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getRawReadPdo();
         }
                     /**
          * Set the PDO connection.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setPdo($pdo);
         }
                     /**
          * Set the PDO connection used for reading.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setReadPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setReadPdo($pdo);
         }
                     /**
@@ -5398,7 +5398,7 @@
          */ 
         public static function getName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getName();
         }
                     /**
@@ -5409,7 +5409,7 @@
          */ 
         public static function getNameWithReadWriteType()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getNameWithReadWriteType();
         }
                     /**
@@ -5421,7 +5421,7 @@
          */ 
         public static function getConfig($option = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getConfig($option);
         }
                     /**
@@ -5432,7 +5432,7 @@
          */ 
         public static function getDriverName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getDriverName();
         }
                     /**
@@ -5443,19 +5443,19 @@
          */ 
         public static function getQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getQueryGrammar();
         }
                     /**
          * Set the query grammar used by the connection.
          *
          * @param \Illuminate\Database\Query\Grammars\Grammar $grammar
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setQueryGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setQueryGrammar($grammar);
         }
                     /**
@@ -5466,19 +5466,19 @@
          */ 
         public static function getSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getSchemaGrammar();
         }
                     /**
          * Set the schema grammar used by the connection.
          *
          * @param \Illuminate\Database\Schema\Grammars\Grammar $grammar
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setSchemaGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setSchemaGrammar($grammar);
         }
                     /**
@@ -5489,19 +5489,19 @@
          */ 
         public static function getPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getPostProcessor();
         }
                     /**
          * Set the query post processor used by the connection.
          *
          * @param \Illuminate\Database\Query\Processors\Processor $processor
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setPostProcessor($processor)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setPostProcessor($processor);
         }
                     /**
@@ -5512,19 +5512,19 @@
          */ 
         public static function getEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getEventDispatcher();
         }
                     /**
          * Set the event dispatcher instance on the connection.
          *
          * @param \Illuminate\Contracts\Events\Dispatcher $events
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setEventDispatcher($events)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setEventDispatcher($events);
         }
                     /**
@@ -5535,19 +5535,19 @@
          */ 
         public static function unsetEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->unsetEventDispatcher();
         }
                     /**
          * Set the transaction manager instance on the connection.
          *
          * @param \Illuminate\Database\DatabaseTransactionsManager $manager
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setTransactionManager($manager)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setTransactionManager($manager);
         }
                     /**
@@ -5558,7 +5558,7 @@
          */ 
         public static function unsetTransactionManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->unsetTransactionManager();
         }
                     /**
@@ -5569,7 +5569,7 @@
          */ 
         public static function pretending()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->pretending();
         }
                     /**
@@ -5580,7 +5580,7 @@
          */ 
         public static function getQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getQueryLog();
         }
                     /**
@@ -5591,7 +5591,7 @@
          */ 
         public static function flushQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->flushQueryLog();
         }
                     /**
@@ -5602,7 +5602,7 @@
          */ 
         public static function enableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->enableQueryLog();
         }
                     /**
@@ -5613,7 +5613,7 @@
          */ 
         public static function disableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->disableQueryLog();
         }
                     /**
@@ -5624,7 +5624,7 @@
          */ 
         public static function logging()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->logging();
         }
                     /**
@@ -5635,31 +5635,31 @@
          */ 
         public static function getDatabaseName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getDatabaseName();
         }
                     /**
          * Set the name of the connected database.
          *
          * @param string $database
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setDatabaseName($database)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setDatabaseName($database);
         }
                     /**
          * Set the read / write type of the connection.
          *
          * @param string|null $readWriteType
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setReadWriteType($readWriteType)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setReadWriteType($readWriteType);
         }
                     /**
@@ -5670,19 +5670,19 @@
          */ 
         public static function getTablePrefix()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->getTablePrefix();
         }
                     /**
          * Set the table prefix in use by the connection.
          *
          * @param string $prefix
-         * @return \Illuminate\Database\MySqlConnection 
+         * @return \Staudenmeir\LaravelCte\Connections\MySqlConnection 
          * @static 
          */ 
         public static function setTablePrefix($prefix)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->setTablePrefix($prefix);
         }
                     /**
@@ -5694,7 +5694,7 @@
          */ 
         public static function withTablePrefix($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->withTablePrefix($grammar);
         }
                     /**
@@ -5707,7 +5707,7 @@
          */ 
         public static function resolverFor($driver, $callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        \Illuminate\Database\MySqlConnection::resolverFor($driver, $callback);
+                        \Staudenmeir\LaravelCte\Connections\MySqlConnection::resolverFor($driver, $callback);
         }
                     /**
          * Get the connection resolver for the given driver.
@@ -5718,7 +5718,7 @@
          */ 
         public static function getResolver($driver)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        return \Illuminate\Database\MySqlConnection::getResolver($driver);
+                        return \Staudenmeir\LaravelCte\Connections\MySqlConnection::getResolver($driver);
         }
                     /**
          * Execute a Closure within a transaction.
@@ -5731,7 +5731,7 @@
          */ 
         public static function transaction($callback, $attempts = 1)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->transaction($callback, $attempts);
         }
                     /**
@@ -5743,7 +5743,7 @@
          */ 
         public static function beginTransaction()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->beginTransaction();
         }
                     /**
@@ -5755,7 +5755,7 @@
          */ 
         public static function commit()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->commit();
         }
                     /**
@@ -5768,7 +5768,7 @@
          */ 
         public static function rollBack($toLevel = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->rollBack($toLevel);
         }
                     /**
@@ -5779,7 +5779,7 @@
          */ 
         public static function transactionLevel()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         return $instance->transactionLevel();
         }
                     /**
@@ -5792,7 +5792,7 @@
          */ 
         public static function afterCommit($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        /** @var \Staudenmeir\LaravelCte\Connections\MySqlConnection $instance */
                         $instance->afterCommit($callback);
         }
          
