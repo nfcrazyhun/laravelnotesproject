@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use CascadeSoftDeletes;
+    use HasRecursiveRelationships;
 
     /**
      * Cascade delete on on listed relationships.
@@ -79,26 +81,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class);
     }
-
-    /**
-     * Get the parent user for the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function parent()
-    {
-        return $this->belongsTo(User::class,'parent_id', 'id');
-    }
-
-    /**
-     * Get the children users for the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function children()
-    {
-        return $this->hasMany(User::class, 'parent_id', 'id');
-    }
-
 
 }
