@@ -29,6 +29,20 @@ class Note extends Model
         'is_private' => 'boolean',
     ];
 
+    /* Scopes */
+
+    /**
+     * Scope a query to only include public notes.
+     *
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublic(\Illuminate\Database\Eloquent\Builder $query)
+    {
+        return $query->where('is_private', false);
+    }
+
     /* Relationships */
 
     /**

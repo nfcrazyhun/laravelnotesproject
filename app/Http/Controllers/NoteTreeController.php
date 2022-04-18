@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Builder;
 
 class NoteTreeController extends Controller
 {
@@ -15,10 +16,14 @@ class NoteTreeController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::all();
+        $users = auth()->user()->descendantsAndSelf()->orderBy('id')->get();
+
         $selectedUser = User::where('username', $request->get('username'))->first();
 
-        $notes = $selectedUser?->notes()->paginate();
+        $notes = $selectedUser?->notes()
+            ->when(auth()->user()->id !== $selectedUser->id, function ($query, $selectedUser) {
+                $query->public();
+            })->paginate();
 
         return view('notes-tree.index', compact(['notes', 'users']));
     }
