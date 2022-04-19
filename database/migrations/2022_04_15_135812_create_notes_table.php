@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\NoteStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(App\Models\User::class)->constrained()->cascadeOnDelete();
             $table->string('body')->nullable();
-            $table->boolean('is_private')->default(false);
+            $table->unsignedSmallInteger('status')->default(NoteStatus::PUBLIC->value);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,7 +17,7 @@ namespace App\Models{
  * @property int $id
  * @property int $user_id
  * @property string|null $body
- * @property bool $is_private
+ * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -26,12 +26,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Note newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Note newQuery()
  * @method static \Illuminate\Database\Query\Builder|Note onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Note public()
  * @method static \Illuminate\Database\Eloquent\Builder|Note query()
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Note whereIsPrivate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Note whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Note whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|Note withTrashed()
@@ -55,7 +56,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|User[] $children
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|User[] $children
  * @property-read int|null $children_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Note[] $notes
  * @property-read int|null $notes_count
@@ -64,23 +65,36 @@ namespace App\Models{
  * @property-read User|null $parent
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|static[] all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User breadthFirst()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User depthFirst()
  * @method static \Database\Factories\UserFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|static[] get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User getExpressionGrammar()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User hasChildren()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User hasParent()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User isLeaf()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User isRoot()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User newModelQuery()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User root()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereParentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User query()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User tree($maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User treeOf(callable $constraint, $maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereDeletedAt($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereDepth($operator, $value = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereEmail($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereId($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereName($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereParentId($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User wherePassword($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User whereUsername($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User withGlobalScopes(array $scopes)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|User withRelationshipExpression($direction, callable $constraint, $initialDepth, $from = null, $maxDepth = null)
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */

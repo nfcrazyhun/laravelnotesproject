@@ -192,6 +192,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'NoteStatus' => App\Enums\NoteStatus::class,    // NoteStatus alias for blade view
     ])->toArray(),
 
 ];

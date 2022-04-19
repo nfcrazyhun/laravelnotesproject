@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\NoteStatus;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 class NoteController extends Controller
 {
@@ -40,12 +42,12 @@ class NoteController extends Controller
         //validation
         $request->validate([
             'body' => 'required|max:255',
-            'is_private' => 'required|boolean',
+            'status' => ['required', new Enum(NoteStatus::class)],
         ]);
 
         auth()->user()->notes()->create([
             'body' => $request->body,
-            'is_private' => $request->is_private,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('notes.index')->with('success', 'Note Created.');
@@ -79,12 +81,12 @@ class NoteController extends Controller
         //validation
         $request->validate([
             'body' => 'required|max:255',
-            'is_private' => 'required|boolean',
+            'status' => ['required', new Enum(NoteStatus::class)],
         ]);
 
         $note->update([
             'body' => $request->body,
-            'is_private' => $request->is_private,
+            'status' => $request->status,
         ]);
 
         return redirect()->back()->with('success', 'Note updated.');

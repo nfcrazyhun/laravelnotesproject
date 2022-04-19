@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\NoteStatus;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -37,7 +38,7 @@ class NoteSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             Note::factory()->create([
                 'user_id' => Arr::random($users),
-                'is_private' => Arr::random([false,false,true]), // 1/3 chance to private
+                'status' => Arr::random([NoteStatus::PUBLIC, NoteStatus::PUBLIC, NoteStatus::PRIVATE]), // 1/3 chance to private
             ]);
         }
 

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\NoteStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,7 @@ class NoteFactory extends Factory
         return [
             'user_id' => fn() => User::factory()->create(),  // fn() Trick to prevent NoteFactory to create a new user when user_id is provided.
             'body' => $this->faker->sentence(),
-            'is_private' => false,
+            'status' => NoteStatus::PUBLIC,
         ];
     }
 
@@ -33,7 +34,7 @@ class NoteFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'is_private' => true,
+                'status' => NoteStatus::PRIVATE,
             ];
         });
     }

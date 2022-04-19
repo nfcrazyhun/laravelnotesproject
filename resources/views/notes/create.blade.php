@@ -43,17 +43,17 @@
                 @enderror
             </div>
 
-            <!-- is_private -->
+            <!-- status -->
             <div class="mt-4">
-                <x-label for="is_private" :value="__('is_private')"/>
+                <x-label for="status" :value="__('status')"/>
                 <x-input type="text"
-                         id="is_private"
-                         name="is_private"
+                         id="status"
+                         name="status"
                          class="block w-full"
-                         value="{{ intval( old('is_private') ) }}"
+                         value="{{ intval( old('status') ) }}"
                 />
 
-                @error('is_private')
+                @error('status')
                 <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
                     </span>

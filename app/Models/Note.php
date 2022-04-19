@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\NoteStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,7 +18,7 @@ class Note extends Model
      */
     protected $fillable = [
         'body',
-        'is_private',
+        'status',
     ];
 
     /**
@@ -26,7 +27,7 @@ class Note extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'is_private' => 'boolean',
+        'status' => 'integer',
     ];
 
     /* Scopes */
@@ -40,7 +41,7 @@ class Note extends Model
      */
     public function scopePublic(\Illuminate\Database\Eloquent\Builder $query)
     {
-        return $query->where('is_private', false);
+        return $query->where('status', NoteStatus::PUBLIC);
     }
 
     /* Relationships */

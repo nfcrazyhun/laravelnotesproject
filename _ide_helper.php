@@ -16365,7 +16365,18 @@
      
 }
 
-        namespace Barryvdh\Debugbar\Facades { 
+        namespace App\Enums { 
+            /**
+     * 
+     *
+     */ 
+        class NoteStatus {
+         
+    }
+     
+}
+
+    namespace Barryvdh\Debugbar\Facades { 
             /**
      * 
      *
@@ -21014,6 +21025,7 @@ namespace  {
             class URL extends \Illuminate\Support\Facades\URL {}
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
+            class NoteStatus extends \App\Enums\NoteStatus {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      

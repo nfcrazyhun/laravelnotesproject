@@ -58,7 +58,7 @@
                         <th class="px-4 py-3">id</th>
                         <th class="px-4 py-3">user_id</th>
                         <th class="px-4 py-3">body</th>
-                        <th class="px-4 py-3">is_private</th>
+                        <th class="px-4 py-3">status</th>
                         <th class="px-4 py-3">created_at</th>
                         <th class="px-4 py-3">updated_at</th>
                         <th class="px-4 py-3">Actions</th>
@@ -81,7 +81,7 @@
                                 </td>
 
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $note->is_private ? 'true':'false' }}
+                                    {{ NoteStatus::tryFrom($note->status)->getName() }}
                                 </td>
 
                                 <td class="px-4 py-3 text-sm">

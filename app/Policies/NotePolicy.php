@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\NoteStatus;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -21,7 +22,7 @@ class NotePolicy
     {
         if ( $user->id == $note->user_id ) { return true;}
 
-        if ($note->is_private === false &&
+        if ($note->status === NoteStatus::PUBLIC &&
             $note->user->ancestors()->pluck('id')->contains($user->id)
         ) { return true; }
 
