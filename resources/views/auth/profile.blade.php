@@ -22,6 +22,15 @@
         </div>
     @endif
 
+    <!-- Delete button -->
+    <div class="mb-4">
+        <form action="{{ route('profile.delete') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <x-button>Delete me!</x-button>
+        </form>
+    </div>
+
     <div class="p-4 bg-white rounded-lg shadow-md">
 
         <form action="{{ route('profile.update') }}" method="POST">

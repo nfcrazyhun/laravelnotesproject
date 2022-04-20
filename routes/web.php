@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('notes-tree', NoteTreeController::class)->only('index');
 
+    /* Profile */
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'delete'])->name('profile.delete');
 });
