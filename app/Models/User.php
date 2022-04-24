@@ -34,6 +34,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'invitation_code',
         'parent_id',
     ];
 

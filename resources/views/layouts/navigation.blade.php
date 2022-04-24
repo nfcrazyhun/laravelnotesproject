@@ -24,6 +24,15 @@
             </li>
 
             <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('pending-users.index') }}" :active="request()->routeIs('pending-users.index')">
+                    <x-slot name="icon">
+                        <x-icons.user-add />
+                    </x-slot>
+                    {{ __('Pending Users') }}
+                </x-nav-link>
+            </li>
+
+            <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('notes.index') }}" :active="request()->routeIs('notes.index')">
                     <x-slot name="icon">
                         <x-icons.clipboard-list />

@@ -3,6 +3,7 @@
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\NoteTreeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PendingUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
     Route::resource('users', UserController::class);
+
+    Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
 
     Route::resource('notes', NoteController::class)->except('show');
 
