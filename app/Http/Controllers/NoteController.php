@@ -63,7 +63,9 @@ class NoteController extends Controller
     {
         $this->authorizeForUser(auth()->user(),'view', $note);
 
-        return view('notes.edit', compact('note'));
+        $statuses = NoteStatus::cases();
+
+        return view('notes.edit', compact(['note','statuses']));
     }
 
     /**
