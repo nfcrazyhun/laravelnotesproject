@@ -29,7 +29,7 @@
 
             <!-- body -->
             <div class="mt-4">
-                <x-label for="body" :value="__('body')"/>
+                <x-label for="body" :value="__('Body')"/>
                 <x-input type="text"
                          id="body"
                          name="body"
@@ -45,14 +45,12 @@
 
             <!-- status -->
             <div class="mt-4">
-                <x-label for="status" :value="__('status')"/>
-                <x-input type="text"
-                         id="status"
-                         name="status"
-                         class="block w-full"
-                         value="{{ intval( old('status') ) }}"
-                />
-
+                <x-label for="status" :value="__('Status')"/>
+                <select name="status" id="status">
+                    @foreach($statuses as $status)
+                        <option value="{{ $status->value }}">{{ $status->getName() }}</option>
+                    @endforeach
+                </select>
                 @error('status')
                 <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
