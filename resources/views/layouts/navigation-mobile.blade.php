@@ -24,9 +24,10 @@
         <a class="ml-6 text-lg font-bold text-gray-800" href="{{ route('dashboard') }}">
             {{ config('app.name', 'Windmill') }}
         </a>
+
         <ul class="mt-6">
             <li class="relative px-6 py-3">
-                <x-nav-link :active="request()->routeIs('dashboard')">
+                <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                     <x-slot name="icon">
                         <x-icons.home />
                     </x-slot>
@@ -44,6 +45,33 @@
             </li>
 
             <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('pending-users.index') }}" :active="request()->routeIs('pending-users.index')">
+                    <x-slot name="icon">
+                        <x-icons.user-add />
+                    </x-slot>
+                    {{ __('Pending Users') }}
+                </x-nav-link>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('notes.index') }}" :active="request()->routeIs('notes.index')">
+                    <x-slot name="icon">
+                        <x-icons.clipboard-list />
+                    </x-slot>
+                    {{ __('My Notes') }}
+                </x-nav-link>
+            </li>
+
+            <li class="relative px-6 py-3">
+                <x-nav-link href="{{ route('notes-tree.index') }}" :active="request()->routeIs('notes-tree.index')">
+                    <x-slot name="icon">
+                        <x-icons.clipboard-list-solid />
+                    </x-slot>
+                    {{ __('Notes Tree') }}
+                </x-nav-link>
+            </li>
+
+            <li class="relative px-6 py-3">
                 <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                     <x-slot name="icon">
                         <x-icons.template />
@@ -52,6 +80,7 @@
                 </x-nav-link>
             </li>
 
+{{--
             <li class="relative px-6 py-3">
                 <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                         @click="toggleMultiLevelMenu" aria-haspopup="true">
@@ -74,6 +103,7 @@
                     </ul>
                 </template>
             </li>
+--}}
         </ul>
     </div>
 </aside>
