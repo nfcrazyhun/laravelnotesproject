@@ -18,10 +18,10 @@ class UserService
         $user->update([
             'name' => "--deleted-user--",
             'username' => "--deleted-user--",
-            'email' => "--deleted-user--",
+            'email' => null,
             'email_verified_at' => null,
             'password' => '--deleted-user--',
-            'remember_token' => null,
+            //'remember_token' => null,
         ]);
 
         return $user->delete();
