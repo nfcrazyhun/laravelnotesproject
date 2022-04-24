@@ -51,11 +51,11 @@
                     <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase bg-gray-50 border-b">
                         <th class="px-4 py-3">id</th>
-                        <th class="px-4 py-3">user_id</th>
-                        <th class="px-4 py-3">body</th>
-                        <th class="px-4 py-3">status</th>
-                        <th class="px-4 py-3">created_at</th>
-                        <th class="px-4 py-3">updated_at</th>
+{{--                        <th class="px-4 py-3">user_id</th>--}}
+                        <th class="px-4 py-3">Body</th>
+                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Created at</th>
+                        <th class="px-4 py-3">Updated at</th>
                         <th class="px-4 py-3">Actions</th>
                     </tr>
                     </thead>
@@ -66,9 +66,9 @@
                                 {{ $note->id }}
                             </td>
 
-                            <td class="px-4 py-3 text-sm">
-                                {{ $note->user_id }}
-                            </td>
+{{--                            <td class="px-4 py-3 text-sm">--}}
+{{--                                {{ $note->user_id }}--}}
+{{--                            </td>--}}
 
                             <td class="px-4 py-3 text-sm">
                                 {{ $note->body }}
