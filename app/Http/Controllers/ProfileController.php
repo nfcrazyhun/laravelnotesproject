@@ -30,7 +30,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Profile updated.');
     }
 
-    public function delete(Request $request, UserService $userService)
+    public function delete(UserService $userService)
     {
         // Get the user
         $user = Auth::user();
@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
         if ($deleted) {
             // User was deleted successfully, redirect to login
-            return redirect()->route('home');
+            return redirect()->route('home')->with('success', 'Profile deleted successfully. Bye-bye!');
         } else {
             // User was NOT deleted successfully, so log them back into your application! Could also use: Auth::loginUsingId($user->id);
             Auth::login($user);
