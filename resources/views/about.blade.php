@@ -4,6 +4,6 @@
     </x-slot>
 
     <div class="p-4 bg-white rounded-lg shadow-xs">
-        {{ __('Sample static text page') }}
+        Creator: <x-link-button href="https://github.com/nfcrazyhun">https://github.com/nfcrazyhun</x-link-button>
     </div>
 </x-app-layout>
