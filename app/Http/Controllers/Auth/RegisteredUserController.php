@@ -38,13 +38,17 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'max:32', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'invitation_code' => ['required', 'exists:users'],
         ]);
 
-        $user = User::create([
+        $user = User::where('invitation_code', $request->invitation_code)->first();
+
+        $user->update([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'invitation_code' => null,
         ]);
 
         event(new Registered($user));

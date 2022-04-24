@@ -63,6 +63,13 @@
                     </div>
 
                     <div class="mt-4">
+                        <x-label id="invitation_code" :value="__('Invitation Code')"/>
+                        <x-input type="text"
+                                 name="invitation_code"
+                                 class="block w-full" />
+                    </div>
+
+                    <div class="mt-4">
                         <x-button class="block w-full">
                             {{ __('Register') }}
                         </x-button>
