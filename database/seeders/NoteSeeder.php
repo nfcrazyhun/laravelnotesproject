@@ -33,11 +33,11 @@ class NoteSeeder extends Seeder
 
 
         //Create notes for users randomly
-        $users = User::all()->pluck('id')->toArray();
+        $users = User::pluck('id');
 
         for ($i = 0; $i < 30; $i++) {
             Note::factory()->create([
-                'user_id' => Arr::random($users),
+                'user_id' => Arr::random($users->toArray()),
                 'status' => Arr::random([NoteStatus::PUBLIC, NoteStatus::PUBLIC, NoteStatus::PRIVATE]), // 1/3 chance to private
             ]);
         }
