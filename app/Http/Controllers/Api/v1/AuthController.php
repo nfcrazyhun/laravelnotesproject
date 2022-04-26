@@ -25,7 +25,12 @@ class AuthController extends ApiController
         }
     }
 
-    //todo logout
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return $this->respondWithMessage('Tokens Revoked');
+    }
 
     public function register(Request $request)
     {
