@@ -25,6 +25,8 @@ class AuthController extends ApiController
         }
     }
 
+    //todo logout
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
