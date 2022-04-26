@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\NoteController;
 use App\Http\Controllers\Api\v1\NoteTreeController;
 use App\Http\Controllers\Api\v1\PendingUserController;
@@ -19,11 +20,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Api login and register
+Route::name('api.v1.')->group(function () {
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::name('api.v1.')->group(function () {
+Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
+
     Route::resource('users', UserController::class)->only('index');
 
     Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
