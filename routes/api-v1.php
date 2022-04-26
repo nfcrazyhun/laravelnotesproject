@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.v1.')->group(function () {
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->only('index');
 
     Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
 
