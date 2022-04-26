@@ -31,7 +31,7 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->only('index');
 
     Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
 
