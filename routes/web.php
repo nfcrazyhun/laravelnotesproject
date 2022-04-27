@@ -31,13 +31,13 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::resource('users', UserController::class)->only('index');
+    Route::apiResource('users', UserController::class)->only('index');
 
-    Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
+    Route::apiResource('pending-users', PendingUserController::class)->only(['index','store']);
 
-    Route::resource('notes', NoteController::class)->except('show');
+    Route::apiResource('notes', NoteController::class)->except('show');
 
-    Route::resource('notes-tree', NoteTreeController::class)->only('index');
+    Route::apiResource('notes-tree', NoteTreeController::class)->only('index');
 
     /* Profile */
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
