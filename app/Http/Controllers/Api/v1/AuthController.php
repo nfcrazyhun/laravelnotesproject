@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
+use Illuminate\Validation\Rules;
 
 
 class AuthController extends ApiController
@@ -16,7 +17,7 @@ class AuthController extends ApiController
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
             $auth = Auth::user();
             $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken;
-            $success['name'] =  $auth->name;
+            $success['username'] =  $auth->username;
 
             return $this->respond($success);
         }
@@ -25,33 +26,62 @@ class AuthController extends ApiController
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        // Get bearer token
+        $bearer = $request->bearerToken();
+
+        // Fetch the associated token Model
+        $token = \Laravel\Sanctum\PersonalAccessToken::findToken($bearer);
+
+        // Get the assigned user
+        $user = $token->tokenable;
+
+        // Revoke Token
+        $user->tokens()->delete();
 
         return $this->respondWithMessage('Tokens Revoked');
     }
 
     public function register(Request $request)
     {
+        // Almost Same validation rules as
+        // app/Http/Controllers/Auth/RegisteredUserController.php @ store()
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'confirm_password' => 'required|same:password',
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'max:32', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', Rules\Password::defaults()],
+            'invitation_code' => ['required', 'exists:users'],
         ]);
 
+
         if($validator->fails()){
-            return $this->handleError($validator->errors());
+            return $this->setStatusCode(422)->respond([
+                'response' => [
+                    'validation_error' => $validator->errors()->all(),
+                    'status_code' => $this->getStatusCode(),
+                ]
+            ]);
         }
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
-        $success['name'] =  $user->name;
 
-        return $this->handleResponse($success, 'User successfully registered!');
+        $input = $validator->validated();
+
+        $user = User::where('invitation_code',$input['invitation_code'])->first();
+
+        $user->update([
+            'name' => $input['name'],
+            'username' => $input['username'],
+            'email' => $input['email'],
+            'password' => bcrypt($input['password']),
+            'invitation_code' => null,
+        ]);
+
+        $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
+        $success['username'] = $user->username;
+
+        return $this->respond($success);
     }
 
 }
