@@ -33,13 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
 
-    Route::resource('users', UserController::class)->only('index');
+    Route::apiResource('users', UserController::class)->only('index');
 
-    Route::resource('pending-users', PendingUserController::class)->only(['index','store']);
+    Route::apiResource('pending-users', PendingUserController::class)->only(['index','store']);
 
-    Route::resource('notes', NoteController::class)->except('show');
+    Route::apiResource('notes', NoteController::class)->except('show');
 
-    Route::resource('notes-tree', NoteTreeController::class)->only('index');
+    Route::apiResource('notes-tree', NoteTreeController::class)->only('index');
 
     /* Profile */
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
