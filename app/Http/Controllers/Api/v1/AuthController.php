@@ -28,17 +28,7 @@ class AuthController extends ApiController
 
     public function logout(Request $request)
     {
-        // Get bearer token
-        $bearer = $request->bearerToken();
-
-        // Fetch the associated token Model
-        $token = \Laravel\Sanctum\PersonalAccessToken::findToken($bearer);
-
-        // Get the assigned user
-        $user = $token->tokenable;
-
-        // Revoke Token
-        $user->tokens()->delete();
+        $this->currentUser();
 
         return $this->respondWithMessage('Tokens Revoked');
     }
