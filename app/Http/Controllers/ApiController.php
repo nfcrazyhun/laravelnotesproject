@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -90,5 +91,24 @@ class ApiController extends Controller
         ]);
     }
 
+    /**
+     * Find out the currently authenticated user from bearerToken.
+     *
+     * @return User
+     */
+    public function currentUser(): User
+    {
+        // Get bearer token
+        $bearer = request()->bearerToken();
+
+        // Fetch the associated token Model
+        $token = \Laravel\Sanctum\PersonalAccessToken::findToken($bearer);
+
+        // Get the assigned user
+        $user = $token->tokenable;
+
+        // Return the current User instance
+        return $user;
+    }
 
 }

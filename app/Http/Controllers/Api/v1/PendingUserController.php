@@ -3,19 +3,33 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Transformers\UserTransformer;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class PendingUserController extends ApiController
 {
+    protected $userTransformer;
+
+    function __construct(UserTransformer $userTransformer)
+    {
+        $this->userTransformer = $userTransformer;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $currentUser = $this->currentUser();
+
+        $users = User::where('parent_id', $currentUser->id)->whereNotNull('invitation_code')->paginate();
+
+        return $this->respondWithPagination($users, [
+            $this->userTransformer->transformCollection($users->items())
+        ]);
     }
 
     /**
@@ -25,40 +39,6 @@ class PendingUserController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
     {
         //
     }
