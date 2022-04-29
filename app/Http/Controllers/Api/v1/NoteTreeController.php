@@ -3,63 +3,37 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\ApiController;
-use App\Models\Note;
+use App\Http\Transformers\NoteTransformer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NoteTreeController extends ApiController
 {
+    protected NoteTransformer $noteTransformer;
+
+    function __construct(NoteTransformer $noteTransformer)
+    {
+        $this->noteTransformer = $noteTransformer;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $users = auth('sanctum')->user()->descendantsAndSelf()->orderBy('id')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $selectedUser = User::where('username', $request->get('username'))->first();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Note $note)
-    {
-        //
-    }
+        $notes = $selectedUser?->notes()->with('user')
+            ->when(auth()->user()->id !== $selectedUser->id, function ($query) {
+                $query->public();
+            })->paginate();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Note $note)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Note $note)
-    {
-        //
+        return $this->respondWithPagination($notes, [
+            $this->noteTransformer->transformCollection($notes->items())
+        ]);
     }
 }
