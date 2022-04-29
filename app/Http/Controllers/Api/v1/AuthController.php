@@ -19,7 +19,7 @@ class AuthController extends ApiController
             $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken;
             $success['username'] =  $auth->username;
 
-            return $this->respond($success);
+            return $this->respondWithData($success);
         }
         else{
             return $this->responseNotFound('Authentication failed.');
