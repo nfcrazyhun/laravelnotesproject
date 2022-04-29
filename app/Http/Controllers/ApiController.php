@@ -67,7 +67,17 @@ class ApiController extends Controller
         return response()->json($data, $this->getStatusCode(), $headers);
     }
 
-    protected function respondWithPagination(LengthAwarePaginator $items, array $data)
+    public function respondWithData(array $data)
+    {
+        return $this->respond([
+            'response' => [
+                'data' => $data,
+                'status_code' => $this->getStatusCode(),
+            ]
+        ]);
+    }
+
+    public function respondWithPagination(LengthAwarePaginator $items, array $data)
     {
 
         $data = array_merge($data, [
