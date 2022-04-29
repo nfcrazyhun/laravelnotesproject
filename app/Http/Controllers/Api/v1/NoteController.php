@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Transformers\NoteTransformer;
 use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController extends ApiController
 {
+    protected NoteTransformer $noteTransformer;
+
+    function __construct(NoteTransformer $noteTransformer)
+    {
+        $this->noteTransformer = $noteTransformer;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,51 +23,10 @@ class NoteController extends ApiController
      */
     public function index()
     {
-        //
-    }
+        $notes = auth('sanctum')->user()->notes()->paginate();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Note $note)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Note $note)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Note $note)
-    {
-        //
+        return $this->respondWithPagination($notes, [
+            $this->noteTransformer->transformCollection($notes->items())
+        ]);
     }
 }
