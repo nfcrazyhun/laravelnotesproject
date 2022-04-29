@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\NoteController;
+use App\Http\Controllers\api\v1\NoteStatusController;
 use App\Http\Controllers\Api\v1\NoteTreeController;
 use App\Http\Controllers\Api\v1\PendingUserController;
 use App\Http\Controllers\Api\v1\ProfileController;
@@ -43,6 +44,8 @@ Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
     Route::apiResource('notes', NoteController::class);
 
     Route::apiResource('notes-tree', NoteTreeController::class)->only('index');
+
+    Route::apiResource('note-statuses', NoteStatusController::class)->only('index');
 
     /* Profile */
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
