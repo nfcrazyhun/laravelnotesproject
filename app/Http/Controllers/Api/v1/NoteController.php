@@ -80,4 +80,19 @@ class NoteController extends ApiController
 
         return $this->respond($this->noteTransformer->transform($note));
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\Note $note
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroy(Note $note)
+    {
+        $this->authorizeForUser(auth()->user(),'delete', $note);
+
+        $note->delete();
+
+        return $this->respondWithMessage('Note deleted');
+    }
 }
