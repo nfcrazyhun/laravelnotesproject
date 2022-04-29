@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
 
     Route::apiResource('pending-users', PendingUserController::class)->only(['index','store']);
 
-    Route::apiResource('notes', NoteController::class)->except('show');
+    Route::apiResource('notes', NoteController::class);
 
     Route::apiResource('notes-tree', NoteTreeController::class)->only('index');
 
