@@ -95,6 +95,7 @@ class ApiController extends Controller
      * Find out the currently authenticated user from bearerToken.
      *
      * @return User
+     * @deprecated Use "auth('sanctum')->user()" instead.
      */
     public function currentUser(): User
     {
