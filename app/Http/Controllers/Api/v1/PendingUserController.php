@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Transformers\UserTransformer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PendingUserController extends ApiController
 {
@@ -23,7 +24,7 @@ class PendingUserController extends ApiController
      */
     public function index()
     {
-        $currentUser = $this->currentUser();
+        $currentUser = auth('sanctum')->user();
 
         $users = User::where('parent_id', $currentUser->id)->whereNotNull('invitation_code')->paginate();
 
@@ -35,11 +36,23 @@ class PendingUserController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $currentUser = auth('sanctum')->user();
+
+        $invCode = $currentUser->id . Str::random(32);
+
+        User::create([
+            'name' => "--pending-user--",
+            'username' => "--pending-user--",
+            'email' => "--pending-user--",
+            'password' => '--pending-user--',
+            'invitation_code' => $invCode,
+            'parent_id' => $currentUser->id,
+        ]);
+
+        return $this->respond($invCode);
     }
 }
