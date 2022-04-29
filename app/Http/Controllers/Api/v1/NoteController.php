@@ -54,4 +54,30 @@ class NoteController extends ApiController
 
         return $this->responseCreated('Note created');
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Note $note
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(Request $request, Note $note)
+    {
+        $this->authorizeForUser(auth('sanctum')->user(),'update', $note);
+
+        //validation
+        $request->validate([
+            'body' => 'required|max:255',
+            'status' => ['required', new Enum(NoteStatus::class)],
+        ]);
+
+        $note->update([
+            'body' => $request->body,
+            'status' => $request->status,
+        ]);
+
+        return $this->respond($this->noteTransformer->transform($note));
+    }
 }

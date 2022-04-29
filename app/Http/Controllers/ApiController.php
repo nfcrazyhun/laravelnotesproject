@@ -35,9 +35,10 @@ class ApiController extends Controller
         return $this;
     }
 
-    public function responseCreated($message = 'Resource created') // 201
+    // Test - Easter egg
+    public function responseTeapot($message = "I'm a teapot") // 418
     {
-        return $this->setStatusCode(Response::HTTP_CREATED)->respondWithMessage($message);
+        return $this->setStatusCode(Response::HTTP_I_AM_A_TEAPOT)->respondWithMessage($message);
     }
 
     public function responseNotFound($message = 'Not Found!') // 404
