@@ -28,7 +28,11 @@ class AuthController extends ApiController
 
     public function logout()
     {
-        $this->currentUser();
+        try {
+            $this->currentUser()->tokens()->delete();
+        } catch (\Exception $e) {
+            return $this->respondInternalError('Something went wrong. Token may have been revoked.');
+        }
 
         return $this->respondWithMessage('Tokens Revoked');
     }
