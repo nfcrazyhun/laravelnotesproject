@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -53,6 +54,15 @@ class Handler extends ExceptionHandler
         if ( request()->expectsJson() || request()->is('api/*') ) {
             $this->renderable(function (NotFoundHttpException $e) {
                 return (new \App\Http\Controllers\ApiController())->responseNotFound();
+            });
+        }
+
+        /**
+         * Set global error handler for AuthorizationException exception handling for Json API
+        */
+        if ( request()->expectsJson() || request()->is('api/*') ) {
+            $this->renderable(function (AccessDeniedHttpException $e) {
+                return (new \App\Http\Controllers\ApiController())->responseForbidden('This action is unauthorized.');
             });
         }
 
