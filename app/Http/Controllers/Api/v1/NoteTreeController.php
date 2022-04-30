@@ -20,12 +20,14 @@ class NoteTreeController extends ApiController
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function index(Request $request)
     {
         $users = auth('sanctum')->user()->descendantsAndSelf()->orderBy('id')->get();
 
-        $selectedUser = User::where('username', $request->get('username'))->first();
+        $selectedUser = User::where('username', $request->get('username'))->firstOrFail();
 
         $notes = $selectedUser?->notes()->with('user')
             ->when(auth()->user()->id !== $selectedUser->id, function ($query) {
