@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -43,6 +44,18 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        /**
+         * Global route model binding ModelNotFound exception handling for Json API
+         *
+         * https://laraveldaily.com/laravel-api-404-response-return-json-instead-of-webpage-error/
+         * https://www.youtube.com/watch?v=SlBJrLnyoMk
+        */
+        if ( request()->wantsJson() ) {
+            $this->renderable(function (NotFoundHttpException $e) {
+                return (new \App\Http\Controllers\ApiController())->responseNotFound();
+            });
+        }
+
         $this->reportable(function (Throwable $e) {
             //
         });
