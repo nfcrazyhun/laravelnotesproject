@@ -46,6 +46,11 @@ class ApiController extends Controller
         return $this->setStatusCode(Response::HTTP_CREATED)->respondWithMessage($message);
     }
 
+    public function responseForbidden($message = 'Forbidden') // 403
+    {
+        return $this->setStatusCode(Response::HTTP_FORBIDDEN)->respondWithError($message);
+    }
+
     public function responseNotFound($message = 'Not Found!') // 404
     {
         return $this->setStatusCode(Response::HTTP_NOT_FOUND)->respondWithError($message);
