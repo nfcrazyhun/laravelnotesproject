@@ -7,6 +7,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Transformers\NoteTransformer;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Enum;
 
 class NoteController extends ApiController
@@ -41,11 +42,14 @@ class NoteController extends ApiController
      */
     public function store(Request $request)
     {
-        //validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'body' => 'required|max:255',
             'status' => ['required', new Enum(NoteStatus::class)],
         ]);
+
+        if($validator->fails()){
+            return $this->respondInvalidRequest($validator->errors()->all());
+        }
 
         auth('sanctum')->user()->notes()->create([
             'body' => $request->body,
@@ -67,13 +71,15 @@ class NoteController extends ApiController
     {
         $this->authorizeForUser(auth('sanctum')->user(),'update', $note);
 
-
-
         //validation
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'body' => 'required|max:255',
             'status' => ['required', new Enum(NoteStatus::class)],
         ]);
+
+        if($validator->fails()){
+            return $this->respondInvalidRequest($validator->errors()->all());
+        }
 
         $note->update([
             'body' => $request->body,

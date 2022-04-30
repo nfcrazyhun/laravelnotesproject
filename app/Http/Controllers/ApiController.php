@@ -61,7 +61,6 @@ class ApiController extends Controller
         return $this->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY)->respondWithError($message);
     }
 
-
     public function respondInternalError($message = 'Internal Error') // 500
     {
         return $this->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR)->respondWithError($message);
