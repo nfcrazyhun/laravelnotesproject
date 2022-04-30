@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
          * https://laraveldaily.com/laravel-api-404-response-return-json-instead-of-webpage-error/
          * https://www.youtube.com/watch?v=SlBJrLnyoMk
         */
-        if ( request()->wantsJson() ) {
+        if ( request()->expectsJson() || request()->is('api/*') ) {
             $this->renderable(function (NotFoundHttpException $e) {
                 return (new \App\Http\Controllers\ApiController())->responseNotFound();
             });
