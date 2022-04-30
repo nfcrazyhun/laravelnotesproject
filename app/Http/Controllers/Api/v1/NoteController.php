@@ -65,7 +65,13 @@ class NoteController extends ApiController
      */
     public function update(Request $request, Note $note)
     {
-        $this->authorizeForUser(auth('sanctum')->user(),'update', $note);
+        try {
+            $this->authorizeForUser(auth('sanctum')->user(),'update', $note);
+        } catch (\Illuminate\Auth\Access\AuthorizationException $exception) {
+            return $this->responseForbidden('This action is unauthorized.');
+        }
+
+
 
         //validation
         $request->validate([
@@ -89,7 +95,11 @@ class NoteController extends ApiController
      */
     public function destroy(Note $note)
     {
-        $this->authorizeForUser(auth()->user(),'delete', $note);
+        try {
+            $this->authorizeForUser(auth('sanctum')->user(),'delete', $note);
+        } catch (\Illuminate\Auth\Access\AuthorizationException $exception) {
+            return $this->responseForbidden('This action is unauthorized.');
+        }
 
         $note->delete();
 
