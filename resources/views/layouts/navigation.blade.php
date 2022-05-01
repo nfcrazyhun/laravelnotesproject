@@ -61,10 +61,10 @@
 
             <li class="relative px-6 py-3">
                 <x-nav-link href="{{ url('/docs') }}" :active="false">
-                <x-slot name="icon">
-                    <x-icons.template />
-                </x-slot>
-                {{ __('Api Docs') }}
+                    <x-slot name="icon">
+                        <x-icons.academic-cap />
+                    </x-slot>
+                    {{ __('Api Docs') }}
                 </x-nav-link>
             </li>
 
