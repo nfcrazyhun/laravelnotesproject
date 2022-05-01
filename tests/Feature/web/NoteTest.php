@@ -63,4 +63,99 @@ class NoteTest extends TestCase
             ])
         ;
     }
+
+    public function test_user_can_update_note()
+    {
+        $this->actingAs($this->user);
+
+        $note = Note::factory()->for($this->user)->create([
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+        $response = $this->patch(route('notes.update', $note), [
+            'body' => 'updated',
+            'status' => NoteStatus::PUBLIC->value,
+        ]);
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseMissing('notes',[
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+        $this->assertDatabaseHas('notes',[
+            'body' => 'updated',
+            'status' => NoteStatus::PUBLIC->value,
+        ]);
+    }
+
+    public function test_user_can_delete_note()
+    {
+        $this->actingAs($this->user);
+
+        $note = Note::factory()->for($this->user)->create([
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+        $response = $this->delete(route('notes.destroy', $note));
+
+        $response->assertStatus(302);
+
+        $this->assertSoftDeleted('notes', $note->getAttributes());
+    }
+
+    /*
+     * Sad paths
+     */
+
+    public function test_user_cannot_update_another_user_note()
+    {
+        $this->actingAs($this->user);
+
+        $anotherUser = User::factory();
+        $anotherNote = Note::factory()->for($anotherUser)->create([
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+        $response = $this->patch(route('notes.update', $anotherNote->id), [
+            'body' => 'updated',
+            'status' => NoteStatus::PUBLIC->value,
+        ]);
+
+        $response
+            ->assertForbidden();
+
+        $this->assertDatabaseHas('notes',[
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+        $this->assertDatabaseMissing('notes',[
+            'body' => 'updated',
+            'status' => NoteStatus::PUBLIC->value,
+        ]);
+    }
+
+    public function test_user_can_delete_another_user_note()
+    {
+        $this->actingAs($this->user);
+
+        $anotherUser = User::factory();
+        $anotherNote = Note::factory()->for($anotherUser)->create([
+            'body' => 'foobar',
+            'status' => NoteStatus::PRIVATE->value,
+        ]);
+
+
+        $response = $this->delete( route('notes.destroy', $anotherNote));
+
+        $response
+            ->assertForbidden();
+
+        $this->assertDatabaseHas('notes', $anotherNote->getAttributes());
+    }
 }
