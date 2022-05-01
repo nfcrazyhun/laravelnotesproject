@@ -43,7 +43,7 @@ class NoteController extends ApiController
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'body' => 'required|max:255',
+            'body' => ['required','max:255'],
             'status' => ['required', new Enum(NoteStatus::class)],
         ]);
 
@@ -73,20 +73,19 @@ class NoteController extends ApiController
 
         //validation
         $validator = Validator::make($request->all(), [
-            'body' => 'required|max:255',
-            'status' => ['required', new Enum(NoteStatus::class)],
+            'body' => ['sometimes','required','max:255'],
+            'status' => ['sometimes','required', new Enum(NoteStatus::class)],
         ]);
 
         if($validator->fails()){
             return $this->respondInvalidRequest($validator->errors()->all());
         }
 
-        $note->update([
-            'body' => $request->body,
-            'status' => $request->status,
-        ]);
+        $note->update(
+            $validator->getData()
+        );
 
-        return $this->respond($this->noteTransformer->transform($note));
+        return $this->respondWithData($this->noteTransformer->transform($note));
     }
     /**
      * Remove the specified resource from storage.
