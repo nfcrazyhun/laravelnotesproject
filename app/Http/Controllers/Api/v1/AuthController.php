@@ -51,12 +51,7 @@ class AuthController extends ApiController
 
 
         if($validator->fails()){
-            return $this->setStatusCode(422)->respond([
-                'response' => [
-                    'validation_error' => $validator->errors()->all(),
-                    'status_code' => $this->getStatusCode(),
-                ]
-            ]);
+            return $this->respondInvalidRequest($validator->errors()->all());
         }
 
 
@@ -75,7 +70,7 @@ class AuthController extends ApiController
         $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
         $success['username'] = $user->username;
 
-        return $this->respond($success);
+        return $this->respondWithData($success);
     }
 
 }
