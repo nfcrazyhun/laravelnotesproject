@@ -30,8 +30,8 @@ Route::name('api.v1.')->group(function () {
      * @unauthenticated
      */
     Route::get("/test", function(){
-        return (new \App\Http\Controllers\ApiController())->responseTeapot()->name('test');
-    });
+        return (new \App\Http\Controllers\ApiController())->responseTeapot();
+    })->name('test');
 });
 
 // Api login and register
