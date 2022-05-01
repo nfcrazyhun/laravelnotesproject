@@ -3,29 +3,52 @@
 namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Validation\Rules;
 
-
+/**
+ * @group Authentication
+ *
+ * APIs to manage Authentication
+ */
 class AuthController extends ApiController
 {
 
+    /**
+     * Login
+     *
+     * @bodyParam
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
-        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
-            $auth = Auth::user();
-            $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken;
-            $success['username'] =  $auth->username;
+        //Find the user form database
+        $user = User::where('username', $request->get('login'))
+            ->orWhere('email', $request->get('login'))
+            ->first();
 
-            return $this->respondWithData($success);
-        }
-        else{
+        // Check if user exist and password hash is matches
+        if ( !$user || !Hash::check($request->get('password'), $user->password) ) {
             return $this->responseNotFound('Authentication failed.');
         }
+
+        // If everything when ok, prepare success response
+        $success['token'] =  $user->createToken('LaravelSanctumAuth')->plainTextToken;
+        $success['username'] =  $user->username;
+        $success['email'] =  $user->email;
+
+        return $this->respondWithData($success);
     }
 
+    /**
+     * Logout
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout()
     {
         try {
@@ -37,6 +60,12 @@ class AuthController extends ApiController
         return $this->respondWithMessage('Tokens Revoked');
     }
 
+    /**
+     * Register
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(Request $request)
     {
         // Almost Same validation rules as
