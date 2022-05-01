@@ -1,64 +1,87 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About this app
 
-## About Laravel
+This web application made in: \
+**TALL** stack - **T**ailwind, **A**lpine.js, **L**aravel, _but (without Livewire)_
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### This application made for learning purpose.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
+**You can expect functionalities like:**
+- Full responsive (mobile friendly) design
+- **Log in with a username or email address** + password
+- You can manage your notes
+- You can invite people
+- You can see users public notes who under your hierarchy
+- **Full-fledged JSON web REST API**
+  - with full API Documentation
+  - Link: <your-vhosts-name>/docs/
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation guide
+1. Open a terminal
+2. Clone this repository
+```
+git clone https://github.com/nfcrazyhun/laravelnotesproject.git
+```
+3. `cd` into it
+4. Install dependencies
+```
+composer install
+```
+5. (Optional) Install npm packages and build Webpack
+```
+npm install
+npm run dev
+```
+6. Copy then rename .env.example to .env
+```
+copy .env.example .env
+```
+7. Generate application key
+```
+php artisan key:generate
+```
+8. Create symbolic links
+```
+php artisan storage:link
+```
+9. Create a database
+   1. Name: foxnotes
+   2. (collation: utf8mb4_unicode_ci)
 
-## Learning Laravel
+10. (Optional) Create a database for phpunit
+    1. Name: foxnotes_test
+    2. (collation: utf8mb4_unicode_ci)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+11. Update database credentials in the .env 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+12. Set up database tables (with demo data)
+```
+php artisan migrate:refresh --seed
+```
 
-## Laravel Sponsors
+13. Set up VirtualHost for the project (recommended)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### The application comes with default user.
+- email: `admin@admin.com`
+- password: `admin`
 
-### Premium Partners
+## Note
+The project was made with the following software versions:
+- PHP 8.1.5
+- Laravel Framework 9.8.1
+- Tailwind CSS 3.0.18
+- Alpine.js 3.9.6
+- node 16.13.2
+- npm 8.1.2
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Special thanks to **[Scribe](https://github.com/knuckleswtf/scribe)** \
+for the excellent API documentation generator.
 
-## Contributing
+## Roadmap
+- more refactors
+- more tests
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Screenshots
+(wip)
