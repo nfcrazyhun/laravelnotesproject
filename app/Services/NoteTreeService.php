@@ -37,7 +37,7 @@ class NoteTreeService
     }
 
     /**
-     * Query for find Selected user notes in user hierarchy
+     * Query for find Selected user notes in user hierarchy.
      *
      * @param User $user
      * @param User $selectedUser
