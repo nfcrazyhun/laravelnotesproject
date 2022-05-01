@@ -62,8 +62,25 @@ class NoteTreeTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee($notePrivate->body)
-            ->assertSee($notePublic->body)
+            ->assertDontSee($notePrivate->body)
+            ->assertDontSee($notePublic->body)
+        ;
+    }
+
+    public function test_user_can_see_user_notes_over_your_hierarchy()
+    {
+        $parentNote = Note::factory()->for($this->user)->create();
+
+
+        $anotherUser = User::factory()->create(['parent_id' => $this->user->id]);
+        $this->actingAs($anotherUser);
+
+        $response = $this->get(route('notes-tree.index', ['username' => $anotherUser->username]));
+
+        $response
+            ->assertOk()
+            ->assertDontSee($parentNote->body)
+            ->assertDontSee($parentNote->body)
         ;
     }
 }
