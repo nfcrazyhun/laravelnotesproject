@@ -19,6 +19,7 @@
         "barryvdh/laravel-ide-helper": "^2.12",
         "beyondcode/laravel-query-detector": "^1.6",
         "fakerphp/faker": "^1.9.1",
+        "knuckleswtf/scribe": "^3.27",
         "laravel/sail": "^1.0.1",
         "laraveldaily/larastarters": "^1.4",
         "mockery/mockery": "^1.4.4",
