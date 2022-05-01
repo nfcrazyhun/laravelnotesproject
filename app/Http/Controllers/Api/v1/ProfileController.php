@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\ApiController;
 use App\Http\Transformers\UserTransformer;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -67,8 +68,21 @@ class ProfileController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy()
+    public function delete(UserService $userService)
     {
-        //
+        // Get the user
+        $user = auth('sanctum')->user();
+
+        // Log the user out
+        $user->tokens()->delete();
+
+        // Delete the user (note that softDeleteUser() should return a boolean for below)
+        $deleted = $userService->GDPRdelete($user);
+
+        if (! $deleted) {
+            return $this->respondWithError('Failed to delete your profile');
+        }
+
+        return $this->respondWithMessage('Profile deleted successfully. Bye-bye!');
     }
 }
