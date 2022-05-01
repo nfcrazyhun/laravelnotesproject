@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Enum;
 
+/**
+ * @group Notes
+ *
+ * APIs to manage Notes
+ *
+ * @authenticated
+ */
 class NoteController extends ApiController
 {
     protected NoteTransformer $noteTransformer;
@@ -22,6 +29,29 @@ class NoteController extends ApiController
 
     /**
      * Display a listing of the resource.
+     *
+     * @request 200 {
+        "0": [
+            {
+                "id": 1,
+                "user_id": 1,
+                "body": "Consequatur dignissimos itaque nostrum explicabo illo.",
+                "status": 2
+            },
+            {
+                "id": 2,
+                "user_id": 1,
+                "body": "Voluptatem ut corporis expedita explicabo consequuntur.",
+                "status": 1
+            }
+        ],
+        "paginator": {
+            "total_count": 4,
+            "total_pages": 1,
+            "current_page": 1,
+            "limit": 15
+        }
+    }
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -36,6 +66,23 @@ class NoteController extends ApiController
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @request 201 {
+        "response": {
+            "message": "Note created",
+            "status_code": 201
+        }
+    }
+     *
+     * @request 422 {
+        "error": {
+            "message": [
+                "The body field is required.",
+                "The status field is required."
+            ],
+            "status_code": 422
+        }
+    }
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -62,9 +109,30 @@ class NoteController extends ApiController
     /**
      * Update the specified resource in storage.
      *
+     * @request 200 {
+        "response": {
+            "data": {
+                "id": 2,
+                "user_id": 1,
+                "body": "Consequatur dignissimos itaque updated!",
+                "status": 1
+            },
+            "status_code": 200
+        }
+    }
+     *
+     * @request 403 {
+        "error": {
+            "message": "This action is unauthorized.",
+            "status_code": 403
+        }
+    }
+     *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Note $note
+     *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Note $note)
@@ -90,8 +158,24 @@ class NoteController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
+     * @request 200 {
+        "response": {
+            "message": "Note deleted",
+            "status_code": 200
+        }
+    }
+     *
+     * @request 403 {
+        "error": {
+            "message": "This action is unauthorized.",
+            "status_code": 403
+        }
+    }
+     *
      * @param \App\Models\Note $note
+     *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Note $note)
