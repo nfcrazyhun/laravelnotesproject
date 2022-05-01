@@ -21,8 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Test - Easter egg
 Route::name('api.v1.')->group(function () {
+    /**
+     * @group HealthCheck
+     *
+     * Represents a Health Check resource.
+     *
+     * @unauthenticated
+     */
     Route::get("/test", function(){
         return (new \App\Http\Controllers\ApiController())->responseTeapot();
     });
