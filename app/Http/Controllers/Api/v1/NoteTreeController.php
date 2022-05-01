@@ -19,6 +19,10 @@ class NoteTreeController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * Descrription1
+     *
+     * @queryParam username string
+     *
      * @return \Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
