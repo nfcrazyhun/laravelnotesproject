@@ -104,7 +104,7 @@ class AuthController extends ApiController
      *
      * Handle an incoming registration request.
      *
-     * @request 200 {
+     * @response 200 {
         "response": {
             "data": {
                 "token": "10|kxifJJ2a4nzgafwD1Ucq24mFT1vXEesnr1PBQsP8",
@@ -114,7 +114,7 @@ class AuthController extends ApiController
         }
     }
      *
-     * @request 422 {
+     * @response 422 {
         "error": {
             "message": [
                 "The name field is required.",

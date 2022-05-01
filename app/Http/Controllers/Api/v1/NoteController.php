@@ -30,7 +30,7 @@ class NoteController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @request 200 {
+     * @response 200 {
         "0": [
             {
                 "id": 1,
@@ -67,14 +67,14 @@ class NoteController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @request 201 {
+     * @response 201 {
         "response": {
             "message": "Note created",
             "status_code": 201
         }
     }
      *
-     * @request 422 {
+     * @response 422 {
         "error": {
             "message": [
                 "The body field is required.",
@@ -109,7 +109,7 @@ class NoteController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @request 200 {
+     * @response 200 {
         "response": {
             "data": {
                 "id": 2,
@@ -121,7 +121,7 @@ class NoteController extends ApiController
         }
     }
      *
-     * @request 403 {
+     * @response 403 {
         "error": {
             "message": "This action is unauthorized.",
             "status_code": 403
@@ -158,14 +158,14 @@ class NoteController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @request 200 {
+     * @response 200 {
         "response": {
             "message": "Note deleted",
             "status_code": 200
         }
     }
      *
-     * @request 403 {
+     * @response 403 {
         "error": {
             "message": "This action is unauthorized.",
             "status_code": 403
