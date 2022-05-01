@@ -16,9 +16,9 @@ class RegistrationTest extends TestCase
 
     public function setUp(): void
     {
-        $this->userService = new UserService;
-
         parent::setUp();
+
+        $this->userService = new UserService;
     }
 
     public function test_registration_screen_can_be_rendered()
