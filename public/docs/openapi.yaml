@@ -1,0 +1,1305 @@
+openapi: 3.0.3
+info:
+  title: 'Laravel Notes'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/v1/login:
+    post:
+      summary: Login
+      description: 'Handle an incoming authentication request.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      token: 7|3ihejDPajw9kcEckvImF7fs8Zp4FIQdQRTWOcyvV
+                      username: admin
+                      email: admin@admin.com
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        token: 7|3ihejDPajw9kcEckvImF7fs8Zp4FIQdQRTWOcyvV
+                        username: admin
+                        email: admin@admin.com
+                      status_code: 200
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message: 'Authentication failed.'
+                    status_code: 404
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message: 'Authentication failed.'
+                      status_code: 404
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                  description: 'Username or email.'
+                  example: 'admin || admin@admin.com'
+                password:
+                  type: string
+                  description: 'Password for login.'
+                  example: password
+              required:
+                - login
+                - password
+      security: []
+  /api/v1/logout:
+    post:
+      summary: Logout
+      description: 'Destroy an authenticated session.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    message: 'Tokens Revoked'
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      message: 'Tokens Revoked'
+                      status_code: 200
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message: 'Something went wrong. Token may have been revoked.'
+                    status_code: 500
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message: 'Something went wrong. Token may have been revoked.'
+                      status_code: 500
+      tags:
+        - Authentication
+  /api/v1/register:
+    post:
+      summary: Register
+      description: 'Handle an incoming registration request.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      token: 10|kxifJJ2a4nzgafwD1Ucq24mFT1vXEesnr1PBQsP8
+                      username: apiusaer1aa
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        token: 10|kxifJJ2a4nzgafwD1Ucq24mFT1vXEesnr1PBQsP8
+                        username: apiusaer1aa
+                      status_code: 200
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message:
+                      - 'The name field is required.'
+                      - 'The username field is required.'
+                      - 'The email field is required.'
+                      - 'The password field is required.'
+                      - 'The invitation code field is required.'
+                    status_code: 422
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message:
+                        - 'The name field is required.'
+                        - 'The username field is required.'
+                        - 'The email field is required.'
+                        - 'The password field is required.'
+                        - 'The invitation code field is required.'
+                      status_code: 422
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: rvpovhoxcxjitvhrebfrjwhctycvknxkkekzoggwkyjtfarwxeaebnzntretklotbesivx
+                username:
+                  type: string
+                  description: 'Must not be greater than 32 characters.'
+                  example: okqvqzz
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: pqsdefmxnoqzqmigpilkzcsgvfpzegxvyzrefykahbhanghspglnloncnfazfjxzvcgbq
+                password:
+                  type: string
+                  description: ''
+                  example: in
+                invitation_code:
+                  type: string
+                  description: ''
+                  example: culpa
+              required:
+                - name
+                - username
+                - email
+                - password
+                - invitation_code
+      security: []
+  /api/v1/test:
+    get:
+      summary: 'Represents a Health Check resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        418:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    message: 'I''m a teapot'
+                    status_code: 418
+                properties:
+                  response:
+                    type: object
+                    example:
+                      message: 'I''m a teapot'
+                      status_code: 418
+      tags:
+        - HealthCheck
+      security: []
+  /api/v1/notes:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  '0':
+                    -
+                      id: 1
+                      user_id: 1
+                      body: 'Consequatur dignissimos itaque nostrum explicabo illo.'
+                      status: 2
+                    -
+                      id: 2
+                      user_id: 1
+                      body: 'Voluptatem ut corporis expedita explicabo consequuntur.'
+                      status: 1
+                  paginator:
+                    total_count: 4
+                    total_pages: 1
+                    current_page: 1
+                    limit: 15
+                properties:
+                  0:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 1
+                        body: 'Consequatur dignissimos itaque nostrum explicabo illo.'
+                        status: 2
+                      -
+                        id: 2
+                        user_id: 1
+                        body: 'Voluptatem ut corporis expedita explicabo consequuntur.'
+                        status: 1
+                    items:
+                      type: object
+                  paginator:
+                    type: object
+                    example:
+                      total_count: 4
+                      total_pages: 1
+                      current_page: 1
+                      limit: 15
+      tags:
+        - Notes
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    message: 'Note created'
+                    status_code: 201
+                properties:
+                  response:
+                    type: object
+                    example:
+                      message: 'Note created'
+                      status_code: 201
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message:
+                      - 'The body field is required.'
+                      - 'The status field is required.'
+                    status_code: 422
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message:
+                        - 'The body field is required.'
+                        - 'The status field is required.'
+                      status_code: 422
+      tags:
+        - Notes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: fmebwrigfqhipuuvbyqoktjuegefwhcnrtjzccajnbfkfmcilyrpljfycmnltloskuzbavlrtjwqkrkefgvexbgquaidelnmfylrdzwddyunjfttxxtonfwmvvnnwwymufdfzyxetlrplpxyuytmwrgzgsougsrjrxfqijjiezyccgzapnd
+                status:
+                  type: string
+                  description: ''
+                  example: et
+              required:
+                - body
+                - status
+  '/api/v1/notes/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      id: 2
+                      user_id: 1
+                      body: 'Consequatur dignissimos itaque updated!'
+                      status: 1
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        id: 2
+                        user_id: 1
+                        body: 'Consequatur dignissimos itaque updated!'
+                        status: 1
+                      status_code: 200
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message: 'This action is unauthorized.'
+                    status_code: 403
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message: 'This action is unauthorized.'
+                      status_code: 403
+      tags:
+        - Notes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ozslbnqlyxursztstkehjyhgxyenmjmcjoxmeiczsijngoyajybkiqrjwteilvkpmngsuhlvqnhwshiswyuvntbqnejxtcamvrwvuzjfbbessijvpqeksnhlmboqnneagqsuwiapurnvempxzttdwlffnzglunebxusphrejbpxeirztsugmcpbqpnlvwutwnvklshrbjtlgfafhvzhjrkwca
+                status:
+                  type: string
+                  description: ''
+                  example: commodi
+              required:
+                - body
+                - status
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    message: 'Note deleted'
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      message: 'Note deleted'
+                      status_code: 200
+        403:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message: 'This action is unauthorized.'
+                    status_code: 403
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message: 'This action is unauthorized.'
+                      status_code: 403
+      tags:
+        - Notes
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the note.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/note-statuses:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      -
+                        '1': Private
+                      -
+                        '2': Public
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        -
+                          '1': Private
+                        -
+                          '2': Public
+                      status_code: 200
+      tags:
+        - NotesStatus
+  /api/v1/notes-tree:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: 'List other users public (and your other) notes under your hierarchy'
+      parameters:
+        -
+          in: query
+          name: username
+          description: ''
+          example: aliquam
+          required: false
+          schema:
+            type: string
+            description: ''
+            example: aliquam
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  '0':
+                    -
+                      id: 1
+                      user_id: 1
+                      body: 'Consequatur dignissimos itaque nostrum explicabo illo.'
+                      status: 2
+                    -
+                      id: 2
+                      user_id: 1
+                      body: 'post form api updated'
+                      status: 1
+                  paginator:
+                    total_count: 2
+                    total_pages: 1
+                    current_page: 1
+                    limit: 15
+                properties:
+                  0:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 1
+                        body: 'Consequatur dignissimos itaque nostrum explicabo illo.'
+                        status: 2
+                      -
+                        id: 2
+                        user_id: 1
+                        body: 'post form api updated'
+                        status: 1
+                    items:
+                      type: object
+                  paginator:
+                    type: object
+                    example:
+                      total_count: 2
+                      total_pages: 1
+                      current_page: 1
+                      limit: 15
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message: 'Not Found!'
+                    status_code: 404
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message: 'Not Found!'
+                      status_code: 404
+      tags:
+        - NotesTree
+  /api/v1/pending-users:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  '0':
+                    -
+                      id: 11
+                      name: '--pending-user--'
+                      username: '--pending-user--'
+                      email: '--pending-user--'
+                      parent_id: 1
+                      invitation_code: 1nNRsCndE9LT6w71NSId9fONa66RhrnfT
+                    -
+                      id: 12
+                      name: '--pending-user--'
+                      username: '--pending-user--'
+                      email: '--pending-user--'
+                      parent_id: 1
+                      invitation_code: 100Oe72cN9keSJIn4gPV4P13EKrRtbY3j
+                  paginator:
+                    total_count: 2
+                    total_pages: 1
+                    current_page: 1
+                    limit: 15
+                properties:
+                  0:
+                    type: array
+                    example:
+                      -
+                        id: 11
+                        name: '--pending-user--'
+                        username: '--pending-user--'
+                        email: '--pending-user--'
+                        parent_id: 1
+                        invitation_code: 1nNRsCndE9LT6w71NSId9fONa66RhrnfT
+                      -
+                        id: 12
+                        name: '--pending-user--'
+                        username: '--pending-user--'
+                        email: '--pending-user--'
+                        parent_id: 1
+                        invitation_code: 100Oe72cN9keSJIn4gPV4P13EKrRtbY3j
+                    items:
+                      type: object
+                  paginator:
+                    type: object
+                    example:
+                      total_count: 2
+                      total_pages: 1
+                      current_page: 1
+                      limit: 15
+      tags:
+        - PendingUser
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      code: 100Oe72cN9keSJIn4gPV4P13EKrRtbY3j
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        code: 100Oe72cN9keSJIn4gPV4P13EKrRtbY3j
+                      status_code: 200
+      tags:
+        - PendingUser
+  /api/v1/profile:
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      id: 1
+                      name: 'Ms. Anderson'
+                      username: admin
+                      email: admin@admin.com
+                      parent_id: null
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        id: 1
+                        name: 'Ms. Anderson'
+                        username: admin
+                        email: admin@admin.com
+                        parent_id: null
+                      status_code: 200
+      tags:
+        - PendingUser
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      id: 1
+                      name: 'Trevis Adams'
+                      username: admin
+                      email: admin@admin.com
+                      parent_id: null
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        id: 1
+                        name: 'Trevis Adams'
+                        username: admin
+                        email: admin@admin.com
+                        parent_id: null
+                      status_code: 200
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message:
+                      - 'The name field is required.'
+                      - 'The username field is required.'
+                      - 'The email field is required.'
+                      - 'The password must be at least 8 characters.'
+                    status_code: 422
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message:
+                        - 'The name field is required.'
+                        - 'The username field is required.'
+                        - 'The email field is required.'
+                        - 'The password must be at least 8 characters.'
+                      status_code: 422
+      tags:
+        - PendingUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: qmhwtfjctvmefgezmigglcttvmicgrdbdhgeyjsdiknngvucjzoxedfcvrexhcfqfrnfuhdjxfhkbgxxrgbgqwjhcizoofoporjnvhyqydxmrocfpkufaoymw
+                username:
+                  type: string
+                  description: 'Must not be greater than 32 characters.'
+                  example: kitjvzlhcjgyxj
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: tjjpevtqwcynoddwfsazfnjofmihmearuuymclamjmfty
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: yug
+              required:
+                - name
+                - username
+                - email
+    patch:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    data:
+                      id: 1
+                      name: 'Trevis Adams'
+                      username: admin
+                      email: admin@admin.com
+                      parent_id: null
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      data:
+                        id: 1
+                        name: 'Trevis Adams'
+                        username: admin
+                        email: admin@admin.com
+                        parent_id: null
+                      status_code: 200
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error:
+                    message:
+                      - 'The name field is required.'
+                      - 'The username field is required.'
+                      - 'The email field is required.'
+                      - 'The password must be at least 8 characters.'
+                    status_code: 422
+                properties:
+                  error:
+                    type: object
+                    example:
+                      message:
+                        - 'The name field is required.'
+                        - 'The username field is required.'
+                        - 'The email field is required.'
+                        - 'The password must be at least 8 characters.'
+                      status_code: 422
+      tags:
+        - PendingUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ztwrnqtdvqogkfzkegkodthbxcwujjvkhydfimqhmsunnflytfnrgv
+                username:
+                  type: string
+                  description: 'Must not be greater than 32 characters.'
+                  example: agnigtrllymawmhihorjvl
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: pnmrrxlptyjrdhwoklbiybzbnmlseswhsytocxplzazzgdoas
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: v
+              required:
+                - name
+                - username
+                - email
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  response:
+                    message: 'Profile deleted successfully. Bye-bye!'
+                    status_code: 200
+                properties:
+                  response:
+                    type: object
+                    example:
+                      message: 'Profile deleted successfully. Bye-bye!'
+                      status_code: 200
+      tags:
+        - PendingUser
+  /api/v1/users:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  '0':
+                    -
+                      id: 1
+                      name: 'Ms. Anderson'
+                      username: admin
+                      email: admin@admin.com
+                      parent_id: null
+                    -
+                      id: 5
+                      name: 'Chester Schaefer'
+                      username: beatrice.bahringer
+                      email: lavada53@example.net
+                      parent_id: 1
+                  paginator:
+                    total_count: 2
+                    total_pages: 1
+                    current_page: 1
+                    limit: 15
+                properties:
+                  0:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Ms. Anderson'
+                        username: admin
+                        email: admin@admin.com
+                        parent_id: null
+                      -
+                        id: 5
+                        name: 'Chester Schaefer'
+                        username: beatrice.bahringer
+                        email: lavada53@example.net
+                        parent_id: 1
+                    items:
+                      type: object
+                  paginator:
+                    type: object
+                    example:
+                      total_count: 2
+                      total_pages: 1
+                      current_page: 1
+                      limit: 15
+      tags:
+        - Users
+tags:
+  -
+    name: Authentication
+    description: "\nAPIs to manage Authentication"
+  -
+    name: HealthCheck
+    description: ''
+  -
+    name: Notes
+    description: "\nAPIs to manage Notes"
+  -
+    name: NotesStatus
+    description: "\nAPIs to list Notes Statuses"
+  -
+    name: NotesTree
+    description: "\nAPIs to lists Notes Tree"
+  -
+    name: PendingUser
+    description: "\nAPIs to manage pending (invited) users"
+  -
+    name: Users
+    description: "\nAPIs to list users under your hierarchy"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []

@@ -1,0 +1,733 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Laravel Notes",
+        "_postman_id": "640d00c2-f834-440a-b544-46e1356f1a5b",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "\nAPIs to manage Authentication",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"login\":\"admin || admin@admin.com\",\"password\":\"password\"}"
+                        },
+                        "description": "Handle an incoming authentication request.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"token\": \"7|3ihejDPajw9kcEckvImF7fs8Zp4FIQdQRTWOcyvV\",\n\"username\": \"admin\",\n\"email\": \"admin@admin.com\"\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n\"error\": {\n\"message\": \"Authentication failed.\",\n\"status_code\": 404\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Destroy an authenticated session."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"message\": \"Tokens Revoked\",\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n\"error\": {\n\"message\": \"Something went wrong. Token may have been revoked.\",\n\"status_code\": 500\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"rvpovhoxcxjitvhrebfrjwhctycvknxkkekzoggwkyjtfarwxeaebnzntretklotbesivx\",\"username\":\"okqvqzz\",\"email\":\"pqsdefmxnoqzqmigpilkzcsgvfpzegxvyzrefykahbhanghspglnloncnfazfjxzvcgbq\",\"password\":\"in\",\"invitation_code\":\"culpa\"}"
+                        },
+                        "description": "Handle an incoming registration request.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"token\": \"10|kxifJJ2a4nzgafwD1Ucq24mFT1vXEesnr1PBQsP8\",\n\"username\": \"apiusaer1aa\"\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"error\": {\n\"message\": [\n\"The name field is required.\",\n\"The username field is required.\",\n\"The email field is required.\",\n\"The password field is required.\",\n\"The invitation code field is required.\"\n],\n\"status_code\": 422\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "HealthCheck",
+            "description": "",
+            "item": [
+                {
+                    "name": "Represents a Health Check resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/test",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/test"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 418,
+                            "body": "{\"response\":{\"message\":\"I'm a teapot\",\"status_code\":418}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Notes",
+            "description": "\nAPIs to manage Notes",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notes"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"0\": [\n{\n\"id\": 1,\n\"user_id\": 1,\n\"body\": \"Consequatur dignissimos itaque nostrum explicabo illo.\",\n\"status\": 2\n},\n{\n\"id\": 2,\n\"user_id\": 1,\n\"body\": \"Voluptatem ut corporis expedita explicabo consequuntur.\",\n\"status\": 1\n}\n],\n\"paginator\": {\n\"total_count\": 4,\n\"total_pages\": 1,\n\"current_page\": 1,\n\"limit\": 15\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notes"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"body\":\"fmebwrigfqhipuuvbyqoktjuegefwhcnrtjzccajnbfkfmcilyrpljfycmnltloskuzbavlrtjwqkrkefgvexbgquaidelnmfylrdzwddyunjfttxxtonfwmvvnnwwymufdfzyxetlrplpxyuytmwrgzgsougsrjrxfqijjiezyccgzapnd\",\"status\":\"et\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n\"response\": {\n\"message\": \"Note created\",\n\"status_code\": 201\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"error\": {\n\"message\": [\n\"The body field is required.\",\n\"The status field is required.\"\n],\n\"status_code\": 422\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notes\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the note."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"body\":\"ozslbnqlyxursztstkehjyhgxyenmjmcjoxmeiczsijngoyajybkiqrjwteilvkpmngsuhlvqnhwshiswyuvntbqnejxtcamvrwvuzjfbbessijvpqeksnhlmboqnneagqsuwiapurnvempxzttdwlffnzglunebxusphrejbpxeirztsugmcpbqpnlvwutwnvklshrbjtlgfafhvzhjrkwca\",\"status\":\"commodi\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"id\": 2,\n\"user_id\": 1,\n\"body\": \"Consequatur dignissimos itaque updated!\",\n\"status\": 1\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n\"error\": {\n\"message\": \"This action is unauthorized.\",\n\"status_code\": 403\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notes\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the note."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"message\": \"Note deleted\",\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n\"error\": {\n\"message\": \"This action is unauthorized.\",\n\"status_code\": 403\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NotesStatus",
+            "description": "\nAPIs to list Notes Statuses",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/note-statuses",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/note-statuses"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": [\n{\n\"1\": \"Private\"\n},\n{\n\"2\": \"Public\"\n}\n],\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "NotesTree",
+            "description": "\nAPIs to lists Notes Tree",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notes-tree",
+                            "query": [
+                                {
+                                    "key": "username",
+                                    "value": "aliquam",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/notes-tree?username=aliquam"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "List other users public (and your other) notes under your hierarchy"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"0\": [\n{\n\"id\": 1,\n\"user_id\": 1,\n\"body\": \"Consequatur dignissimos itaque nostrum explicabo illo.\",\n\"status\": 2\n},\n{\n\"id\": 2,\n\"user_id\": 1,\n\"body\": \"post form api updated\",\n\"status\": 1\n}\n],\n\"paginator\": {\n\"total_count\": 2,\n\"total_pages\": 1,\n\"current_page\": 1,\n\"limit\": 15\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n\"error\": {\n\"message\": \"Not Found!\",\n\"status_code\": 404\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "PendingUser",
+            "description": "\nAPIs to manage pending (invited) users",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/pending-users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/pending-users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"0\": [\n{\n\"id\": 11,\n\"name\": \"--pending-user--\",\n\"username\": \"--pending-user--\",\n\"email\": \"--pending-user--\",\n\"parent_id\": 1,\n\"invitation_code\": \"1nNRsCndE9LT6w71NSId9fONa66RhrnfT\"\n},\n{\n\"id\": 12,\n\"name\": \"--pending-user--\",\n\"username\": \"--pending-user--\",\n\"email\": \"--pending-user--\",\n\"parent_id\": 1,\n\"invitation_code\": \"100Oe72cN9keSJIn4gPV4P13EKrRtbY3j\"\n}\n],\n\"paginator\": {\n\"total_count\": 2,\n\"total_pages\": 1,\n\"current_page\": 1,\n\"limit\": 15\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/pending-users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/pending-users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"code\": \"100Oe72cN9keSJIn4gPV4P13EKrRtbY3j\"\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"id\": 1,\n\"name\": \"Ms. Anderson\",\n\"username\": \"admin\",\n\"email\": \"admin@admin.com\",\n\"parent_id\": null\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"qmhwtfjctvmefgezmigglcttvmicgrdbdhgeyjsdiknngvucjzoxedfcvrexhcfqfrnfuhdjxfhkbgxxrgbgqwjhcizoofoporjnvhyqydxmrocfpkufaoymw\",\"username\":\"kitjvzlhcjgyxj\",\"email\":\"tjjpevtqwcynoddwfsazfnjofmihmearuuymclamjmfty\",\"password\":\"yug\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"id\": 1,\n\"name\": \"Trevis Adams\",\n\"username\": \"admin\",\n\"email\": \"admin@admin.com\",\n\"parent_id\": null\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"error\": {\n\"message\": [\n\"The name field is required.\",\n\"The username field is required.\",\n\"The email field is required.\",\n\"The password must be at least 8 characters.\"\n],\n\"status_code\": 422\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile"
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ztwrnqtdvqogkfzkegkodthbxcwujjvkhydfimqhmsunnflytfnrgv\",\"username\":\"agnigtrllymawmhihorjvl\",\"email\":\"pnmrrxlptyjrdhwoklbiybzbnmlseswhsytocxplzazzgdoas\",\"password\":\"v\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"data\": {\n\"id\": 1,\n\"name\": \"Trevis Adams\",\n\"username\": \"admin\",\n\"email\": \"admin@admin.com\",\n\"parent_id\": null\n},\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n\"error\": {\n\"message\": [\n\"The name field is required.\",\n\"The username field is required.\",\n\"The email field is required.\",\n\"The password must be at least 8 characters.\"\n],\n\"status_code\": 422\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/profile"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"response\": {\n\"message\": \"Profile deleted successfully. Bye-bye!\",\n\"status_code\": 200\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "description": "\nAPIs to list users under your hierarchy",
+            "item": [
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"0\": [\n{\n\"id\": 1,\n\"name\": \"Ms. Anderson\",\n\"username\": \"admin\",\n\"email\": \"admin@admin.com\",\n\"parent_id\": null\n},\n{\n\"id\": 5,\n\"name\": \"Chester Schaefer\",\n\"username\": \"beatrice.bahringer\",\n\"email\": \"lavada53@example.net\",\n\"parent_id\": 1\n}\n],\n\"paginator\": {\n\"total_count\": 2,\n\"total_pages\": 1,\n\"current_page\": 1,\n\"limit\": 15\n}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer"
+    }
+}
