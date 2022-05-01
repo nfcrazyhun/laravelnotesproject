@@ -7,10 +7,31 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Support\Arr;
 use ReflectionEnum;
 
+/**
+ * @group NotesStatus
+ *
+ * APIs to list Notes Statuses
+ *
+ * @authenticated
+ */
 class NoteStatusController extends ApiController
 {
     /**
      * Display a listing of the resource.
+     *
+     * @response 200 {
+        "response": {
+            "data": [
+                {
+                    "1": "Private"
+                },
+                {
+                    "2": "Public"
+                }
+            ],
+            "status_code": 200
+        }
+    }
      *
      * @return \Illuminate\Http\JsonResponse
      */
