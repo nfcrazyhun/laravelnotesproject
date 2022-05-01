@@ -27,10 +27,15 @@ class NoteTreeController extends ApiController
     {
         $users = auth('sanctum')->user()->descendantsAndSelf()->orderBy('id')->get();
 
-        $selectedUser = User::where('username', $request->get('username'))->firstOrFail();
+        $userIdsInMyHierarchy = $users->pluck('id');
+
+        $selectedUser = User::query()
+            ->whereIn('id', $userIdsInMyHierarchy)
+            ->where('username', $request->get('username'))
+            ->firstOrFail();
 
         $notes = $selectedUser?->notes()->with('user')
-            ->when(auth()->user()->id !== $selectedUser->id, function ($query) {
+            ->when(auth('sanctum')->user()->id !== $selectedUser->id, function ($query) {
                 $query->public();
             })->paginate();
 
