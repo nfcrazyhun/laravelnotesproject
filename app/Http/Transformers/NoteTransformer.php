@@ -9,6 +9,7 @@ class NoteTransformer extends Transformer {
         return [
             'id' => $note['id'],
             'user_id' => $note['user_id'],
+            'body' => $note['body'],
             'status' => $note['user_id'],
         ];
     }
