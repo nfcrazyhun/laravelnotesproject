@@ -6,6 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Transformers\UserTransformer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends ApiController
 {
@@ -19,7 +22,7 @@ class ProfileController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show()
     {
@@ -34,21 +37,37 @@ class ProfileController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
-        //
+        //validation
+        $validator = Validator::make($request->all(), [
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'username' => ['sometimes', 'required', 'max:32', Rule::unique('users')->ignore(Auth::user())],
+            'email' => ['sometimes', 'required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
+            'password' => ['nullable', 'string', 'confirmed', 'min:8'],
+        ]);
+
+        if($validator->fails()){
+            return $this->respondInvalidRequest($validator->errors()->all());
+        }
+
+        $user = auth('sanctum')->user();
+
+        $user->update($validator->getData());
+
+        return $this->respondWithData(
+            $this->userTransformer->transform( $user->toArray() )
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(User $user)
+    public function destroy()
     {
         //
     }
