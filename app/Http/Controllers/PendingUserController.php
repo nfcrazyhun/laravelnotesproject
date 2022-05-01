@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -25,19 +26,10 @@ class PendingUserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store()
+    public function store(UserService $userService)
     {
-        $invCode = auth()->id() . Str::random(32);
+        $pendingUser = $userService->createPendingUser(auth()->id());
 
-        User::create([
-            'name' => "--pending-user--",
-            'username' => "--pending-user--",
-            'email' => "--pending-user--",
-            'password' => '--pending-user--',
-            'invitation_code' => $invCode,
-            'parent_id' => auth()->id(),
-        ]);
-
-        return redirect()->back()->with('success', 'Invitation generated successfully! Code: '.$invCode);
+        return redirect()->back()->with('success', 'Invitation generated successfully! Code: '.$pendingUser->invitation_code);
     }
 }
