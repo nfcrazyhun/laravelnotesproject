@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Transformers\NoteTransformer;
-use App\Models\User;
+use App\Services\NoteTreeService;
 use Illuminate\Http\Request;
 
 class NoteTreeController extends ApiController
@@ -27,21 +27,15 @@ class NoteTreeController extends ApiController
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function index(Request $request)
+    public function index(Request $request, NoteTreeService $noteTreeService)
     {
-        $users = auth('sanctum')->user()->descendantsAndSelf()->orderBy('id')->get();
+        $user = auth('sanctum')->user();
 
-        $userIdsInMyHierarchy = $users->pluck('id');
+        $selectedUser = $noteTreeService
+                            ->querySelectedUserFromUserHierarchy($user, $request->get('username'))
+                            ->firstOrFail();
 
-        $selectedUser = User::query()
-            ->whereIn('id', $userIdsInMyHierarchy)
-            ->where('username', $request->get('username'))
-            ->firstOrFail();
-
-        $notes = $selectedUser?->notes()->with('user')
-            ->when(auth('sanctum')->user()->id !== $selectedUser->id, function ($query) {
-                $query->public();
-            })->paginate();
+        $notes = $noteTreeService->queryNotesFromUserHierarchy($user, $selectedUser)->paginate();
 
         return $this->respondWithPagination($notes, [
             $this->noteTransformer->transformCollection($notes->items())
