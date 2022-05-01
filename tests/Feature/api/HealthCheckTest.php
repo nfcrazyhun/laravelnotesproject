@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+use Tests\ApiTester;
 
-class HealthCheckTest extends TestCase
+class HealthCheckTest extends ApiTester
 {
     /**
      * A basic test example.
