@@ -53,6 +53,6 @@ class PendingUserController extends ApiController
             'parent_id' => $currentUser->id,
         ]);
 
-        return $this->respond($invCode);
+        return $this->respondWithData(['code' => $invCode]);
     }
 }
