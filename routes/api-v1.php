@@ -50,5 +50,6 @@ Route::middleware('auth:sanctum')->name('api.v1.')->group(function () {
     /* Profile */
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'delete'])->name('profile.delete');
 });
