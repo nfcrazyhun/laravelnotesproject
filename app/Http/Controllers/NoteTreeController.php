@@ -20,7 +20,7 @@ class NoteTreeController extends Controller
     {
         $users = auth()->user()->descendantsAndSelf()->orderBy('id')->get();
 
-        $selectedUser = User::where('username', $request->get('username'))->firstOrFail();
+        $selectedUser = User::where('username', $request->get('username'))->first();
 
         $notes = $selectedUser?->notes()->with('user')
             ->when(auth()->user()->id !== $selectedUser->id, function ($query) {
