@@ -19,7 +19,28 @@ class AuthController extends ApiController
     /**
      * Login
      *
-     * @bodyParam
+     * Handle an incoming authentication request.
+     *
+     * @bodyParam login string required Username or email. Example: admin || admin@admin.com
+     * @bodyParam password string required Password for login. Example: password
+     *
+     * @response 200 {
+        "response": {
+            "data": {
+                "token": "7|3ihejDPajw9kcEckvImF7fs8Zp4FIQdQRTWOcyvV",
+                "username": "admin",
+                "email": "admin@admin.com"
+            },
+            "status_code": 200
+        }
+    }
+     *
+     * @response 404 {
+        "error": {
+            "message": "Authentication failed.",
+            "status_code": 404
+        }
+    }
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -47,6 +68,24 @@ class AuthController extends ApiController
     /**
      * Logout
      *
+     * Destroy an authenticated session.
+     *
+     * @authenticated
+     *
+     * @response 200 {
+        "response": {
+            "message": "Tokens Revoked",
+            "status_code": 200
+        }
+    }
+     *
+     * @response 500 {
+        "error": {
+            "message": "Something went wrong. Token may have been revoked.",
+            "status_code": 500
+        }
+    }
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
@@ -62,6 +101,31 @@ class AuthController extends ApiController
 
     /**
      * Register
+     *
+     * Handle an incoming registration request.
+     *
+     * @request 200 {
+        "response": {
+            "data": {
+                "token": "10|kxifJJ2a4nzgafwD1Ucq24mFT1vXEesnr1PBQsP8",
+                "username": "apiusaer1aa"
+            },
+            "status_code": 200
+        }
+    }
+     *
+     * @request 422 {
+        "error": {
+            "message": [
+                "The name field is required.",
+                "The username field is required.",
+                "The email field is required.",
+                "The password field is required.",
+                "The invitation code field is required."
+            ],
+            "status_code": 422
+        }
+    }
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
